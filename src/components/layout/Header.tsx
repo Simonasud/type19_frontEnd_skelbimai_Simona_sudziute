@@ -2,10 +2,12 @@
 
 function Header() {
   return (
-    <header>
-      <div>
-        <h2>logo</h2>
-        <nav>
+    <header className='header'>
+      <div className='container'>
+        <h2 className='headerLogo'>
+          skel<span className='headerSpan'>BI</span>mai
+        </h2>
+        <nav className=''>
           <ul>
             <li>
               <a href=''>link</a>
