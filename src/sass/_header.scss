@@ -1,7 +1,7 @@
 .header {
-  background-color: #ffffff;
-  color: #3f3f3f;
- padding-top: 10px;
+  background-color: $tertiary;
+  color: $primary;
+ padding-top: 15px;
   padding-bottom: 10px;
 }
 
@@ -13,16 +13,30 @@
 
 .headerLogo {
   font-weight: lighter;
+ 
   
 }
 
 .headerSpan {
-  color: #ff6168;
+  color: $secondary;
   font-style: italic;
   font-size: larger;
   font-weight: bold;
-  border: 1px solid #3f3f3f;
+  border: 1px solid $primary;
   border-radius: 20px;
   padding: 4px;
 }
 
+.headerUl {
+  display: flex;
+  gap: 10px;
+}
+
+.headerLi {
+  font-size: smaller;
+}
+
+.headerLi:hover {
+  color: $secondary;
+  font-weight: bold;
+}
