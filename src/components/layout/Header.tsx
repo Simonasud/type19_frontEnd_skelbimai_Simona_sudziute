@@ -1,11 +1,11 @@
-//
+// Header.tsx
 
 import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
   return (
     <header className='header'>
-      <div className='container'>
+      <div className='container headerContainer'>
         <Link to={'/'}>
           <h2 className='headerLogo'>
             skel<span className='headerSpan'>BI</span>mai
@@ -14,7 +14,7 @@ function Header() {
         <nav className=''>
           <ul className='headerUl'>
             <li className='headerLi'>
-              <NavLink className={'headerNavLink'} to='/'>
+              <NavLink className={'headerNavLink'} to='/ads'>
                 Skelbimai
               </NavLink>
             </li>
