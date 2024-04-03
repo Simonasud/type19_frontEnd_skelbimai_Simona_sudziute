@@ -14,13 +14,19 @@ function Header() {
         <nav className=''>
           <ul className='headerUl'>
             <li className='headerLi'>
-              <NavLink to='/'>Skelbimai</NavLink>
+              <NavLink className={'headerNavLink'} to='/'>
+                Skelbimai
+              </NavLink>
             </li>
             <li className='headerLi'>
-              <NavLink to='/login'>Login</NavLink>
+              <NavLink className={'headerNavLink'} to='/login'>
+                Login
+              </NavLink>
             </li>
             <li className='headerLi'>
-              <NavLink to='/register'>Register</NavLink>
+              <NavLink className={'headerNavLink'} to='/register'>
+                Register
+              </NavLink>
             </li>
           </ul>
         </nav>

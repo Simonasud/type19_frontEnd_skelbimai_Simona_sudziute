@@ -12,9 +12,8 @@
 }
 
 .headerLogo {
-  font-weight: lighter;
- 
-  
+  font-weight: lighter; 
+  font-size: 18px;
 }
 
 .headerSpan {
@@ -23,8 +22,9 @@
   font-size: larger;
   font-weight: bold;
   border: 1px solid $primary;
-  border-radius: 20px;
-  padding: 4px;
+  border-radius:0px 20px;
+  padding: 5px;
+  margin: 2px;
 }
 
 .headerUl {
@@ -32,11 +32,13 @@
   gap: 10px;
 }
 
-.headerLi {
+.headerNavLink {
   font-size: smaller;
 }
 
-.headerLi:hover {
+.headerNavLink:hover {
   color: $secondary;
-  font-weight: bold;
 }
+
+
+
