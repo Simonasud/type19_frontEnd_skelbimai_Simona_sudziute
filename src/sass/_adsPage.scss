@@ -53,6 +53,10 @@
   color: #721c24;
   @include alertStyles;
 }
+.btn {
+  @include btn;
+}
+
 
 
 

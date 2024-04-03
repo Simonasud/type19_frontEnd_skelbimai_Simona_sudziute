@@ -11,11 +11,10 @@ export default function AddCard({ item }: AddCardProps) {
     <div className='adsCard'>
       <img src={'/img/' + item.main_image_url} alt={item.title} className='' />
       <h2>{item.title}</h2>
-      <p className='adsPrice'>
-        {item.price} <span className='adsSpan'>eur</span>
-      </p>
-      <Link to={'/'}>
-        <button className='btn'>Read more</button>
+      <Link to={`/ads/${item.id}`}>
+        <button className='btn'>
+          Sužinok daugiau <i className='bi bi-caret-right'></i>
+        </button>
       </Link>
     </div>
   );
