@@ -5,12 +5,20 @@ import { useEffect, useState } from 'react';
 import { beBaseurl } from '../../config';
 import { AdsObjType } from '../../types/types';
 
-function AddsPage() {
+import AddCard from '../../components/ads/AddCard';
+
+function AdsPage() {
   const [adsArr, setAdsArr] = useState<AdsObjType[] | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState<string>('');
   console.log('adsArr ===', adsArr);
 
   useEffect(() => {
-    getAds(`${beBaseurl}/ads`).then((data) => setAdsArr(data));
+    setIsLoading(true);
+    getAds(`${beBaseurl}/ads`).then((data) => {
+      setAdsArr(data);
+      setIsLoading(false);
+    });
   }, []);
 
   function getAds(url: string): Promise<AdsObjType[] | null> {
@@ -23,6 +31,7 @@ function AddsPage() {
       })
       .catch((error: Error) => {
         console.log('error ===', error);
+        setIsError('Something went wrong, please try later');
         return null;
       });
   }
@@ -32,10 +41,12 @@ function AddsPage() {
       <div className='adsContainer'>
         <h1 className='adsTitle'>Adds</h1>
         <p className='adsText'>Welcome to Adds Page</p>
+        {isLoading && <p className='adsAlert'>Loading...</p>}
+        {isError && <p className='adsError'>{isError}</p>}
         <ul className='adsUl'>
           {adsArr?.map((aObj) => (
-            <li className='' key={aObj.id}>
-              {aObj.title}
+            <li key={aObj.id}>
+              <AddCard item={aObj} />
             </li>
           ))}
         </ul>
@@ -44,4 +55,4 @@ function AddsPage() {
   );
 }
 
-export default AddsPage;
+export default AdsPage;

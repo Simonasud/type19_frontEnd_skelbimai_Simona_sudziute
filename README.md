@@ -9,7 +9,10 @@ Sukurti navigacija kuri leist naviguoti i visus puslapius bei bus matoma ar vart
 ## Puslapiai
 
 1. Pradinis puslapis - url - /
-   Skelbimu sarasas. Kiekvienas skelbimas turi mygtuka skaityti daugiau. Mygtukas turi vesti i skelbimo puslapi. Skelbimu sarasas turetu buti rikiuojamas pagal naujausius skelbimus. Prisijungusio vartotojo skebimai atvaizduojami kitokiu stiliumi.
+   Skelbimu sarasas.
+   Kiekvienas skelbimas turi mygtuka skaityti daugiau.
+   Mygtukas turi vesti i skelbimo puslapi. Skelbimu sarasas turetu buti rikiuojamas pagal naujausius skelbimus.
+   Prisijungusio vartotojo skebimai atvaizduojami kitokiu stiliumi.
    Miestu korteliu sarasas
    Kategoriju sarasas
    filtrai

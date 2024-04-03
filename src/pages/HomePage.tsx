@@ -2,9 +2,9 @@
 
 function HomePage() {
   return (
-    <div>
-      <h1>HomePage</h1>
-      <p>welcome to home page</p>
+    <div className='container'>
+      <h1 className='homeTitle'>HomePage</h1>
+      <p className='homeText'>welcome to home page</p>
     </div>
   );
 }
