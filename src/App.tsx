@@ -5,6 +5,7 @@ import Header from './components/layout/Header';
 import HomePage from './pages/HomePage';
 import AdsPage from './pages/skelbimai/AdsPage.tsx';
 import SingleAddPage from './pages/skelbimai/SingleAddPage.tsx';
+import AddAdsPage from './pages/skelbimai/AddAdsPage.tsx';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/ads' element={<AdsPage />} />
+        <Route path='/ads/add' element={<AddAdsPage />} />
         <Route path='/ads/:adsId' element={<SingleAddPage />} />
       </Routes>
     </div>

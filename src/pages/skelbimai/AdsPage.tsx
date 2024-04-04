@@ -39,8 +39,8 @@ function AdsPage() {
   return (
     <div className='container'>
       <div className='adsContainer'>
-        <h1 className='adsTitle'>Adds</h1>
-        <p className='adsText'>Welcome to Adds Page</p>
+        <h1 className='title'>Adds</h1>
+        <p className='text'>Welcome to Adds Page</p>
         {isLoading && <p className='adsAlert'>Loading...</p>}
         {isError && <p className='adsError'>{isError}</p>}
         <ul className='adsUl'>

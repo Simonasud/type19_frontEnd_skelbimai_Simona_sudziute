@@ -1,0 +1,162 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #f4f4f4;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.header {
+  background-color: #ffffff;
+  color: #3f3f3f;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.headerContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.headerLogo {
+  font-weight: lighter;
+  font-size: 18px;
+}
+
+.headerSpan {
+  color: #ff6168;
+  font-style: italic;
+  font-size: larger;
+  font-weight: bold;
+  border: 1px solid #3f3f3f;
+  border-radius: 0px 20px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.headerUl {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+
+.headerNavLink {
+  font-size: smaller;
+}
+
+.headerNavLink:hover {
+  color: #ff6168;
+}
+
+.adsContainer {
+  padding-top: 20px;
+}
+
+.titleitle {
+  font-size: 40px;
+}
+
+.text {
+  color: #ff6168;
+  font-size: 12px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding-bottom: 40px;
+}
+
+.adsUl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding-left: 0;
+}
+
+.adsCard {
+  background-color: #fff;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.adsCard h2 {
+  font-size: 20px;
+}
+
+.adsCard {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #3f3f3f;
+}
+
+.adsPrice {
+  font-size: 14px;
+}
+
+.adsAlert {
+  background-color: #e2e3e5;
+  color: #6c757d;
+  padding: 0.75rem 1.25rem;
+  margin-top: 20px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.adsError {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 0.75rem 1.25rem;
+  margin-top: 20px;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+
+.btn {
+  border: transparent;
+  background-color: transparent;
+  padding-left: 0;
+  color: #0066cc;
+}/*# sourceMappingURL=index.css.map */

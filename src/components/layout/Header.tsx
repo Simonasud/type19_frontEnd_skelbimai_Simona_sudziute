@@ -19,6 +19,11 @@ function Header() {
               </NavLink>
             </li>
             <li className='headerLi'>
+              <NavLink className={'headerNavLink'} to='/ads/add'>
+                Pridėti skelbimą
+              </NavLink>
+            </li>
+            <li className='headerLi'>
               <NavLink className={'headerNavLink'} to='/login'>
                 Login
               </NavLink>

@@ -11,3 +11,17 @@ background-color: transparent;
 padding-left: 0;
 color: $quaternary;
 }
+
+@mixin pageTitleStyle {
+  .titleitle {
+    font-size: 40px;
+  }
+
+  .text {
+    color: $secondary;
+    font-size: 12px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-bottom: 40px;
+  }
+}
+
