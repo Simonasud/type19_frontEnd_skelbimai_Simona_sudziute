@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -82,16 +83,59 @@ ul {
   display: -ms-flexbox;
   display: flex;
   gap: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .headerNavLink {
-  font-size: smaller;
+  font-size: 18px;
 }
 
 .headerNavLink:hover {
   color: #ff6168;
 }
 
+.burgerBtn, .x-lg {
+  border: transparent !important;
+  background-color: transparent !important;
+  color: #3f3f3f;
+  font-size: 24px;
+}
+
+.close {
+  display: none;
+}
+
+.mobileMenu {
+  position: fixed;
+  background-color: #ffffff;
+  color: #3f3f3f;
+  right: 0;
+  top: 54px;
+  bottom: 0;
+  text-align: left;
+  min-width: 200px;
+}
+
+@media screen and (min-width: 768px) {
+  .burgerBtn {
+    display: none;
+  }
+  .close {
+    display: block;
+  }
+  .headerNav {
+    display: block !important; /* Svarbu, kad šis stilius perrašytų anksčiau nustatytą 'display: none' */
+  }
+  .headerUl {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
 .adsContainer {
   padding-top: 20px;
 }
@@ -159,4 +203,5 @@ ul {
   background-color: transparent;
   padding-left: 0;
   color: #0066cc;
+  padding-bottom: 10px;
 }/*# sourceMappingURL=index.css.map */

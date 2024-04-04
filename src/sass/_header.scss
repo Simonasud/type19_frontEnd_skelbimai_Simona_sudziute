@@ -1,7 +1,7 @@
 .header {
   background-color: $tertiary;
   color: $primary;
- padding-top: 15px;
+  padding-top: 15px;
   padding-bottom: 10px;
 }
 
@@ -22,7 +22,7 @@
   font-size: larger;
   font-weight: bold;
   border: 1px solid $primary;
-  border-radius:0px 20px;
+  border-radius: 0px 20px;
   padding: 5px;
   margin: 2px;
 }
@@ -30,17 +30,60 @@
 .headerUl {
   display: flex;
   gap: 10px;
+  flex-direction: column;
 }
 
 .headerNavLink {
-  font-size: smaller;
+  font-size: 18px;
 }
 
 .headerNavLink:hover {
   color: $secondary;
 }
 
+.burgerBtn, .x-lg {
+  border: transparent!important;
+  background-color: transparent!important;
+  color: $primary;
+  font-size: 24px;
+}
 
 
 
+.close{
+  display: none;
+}
 
+
+
+.mobileMenu {
+  position: fixed;
+  background-color: $tertiary;
+  color: $primary;
+  right: 0;
+  top: 54px;
+  bottom: 0;
+  text-align: left;
+  min-width: 200px;
+ 
+}
+
+@media screen and (min-width: 768px) {
+  .burgerBtn {
+    display: none;
+  }
+
+  .close {
+    display: block;
+  }
+
+  .headerNav {
+    display: block !important; /* Svarbu, kad šis stilius perrašytų anksčiau nustatytą 'display: none' */
+  }
+
+  .headerUl {
+    flex-direction: row;
+  }
+
+  
+}

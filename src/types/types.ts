@@ -17,3 +17,13 @@ export type AdsObjType = {
   created_at: string;
   is_published: boolean;
 }
+
+export type AdsFormType = {
+  title: string,
+  description: string,
+  price: number,
+  phone: string,
+  TYPE: string,
+  town: string,
+  category: string,
+}

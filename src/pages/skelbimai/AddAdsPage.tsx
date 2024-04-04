@@ -1,72 +1,100 @@
 import { useFormik } from 'formik';
+import { AdsFormType } from '../../types/types';
+import InputEl from '../../components/UI/InputEl';
 
-//
-type InputElProps = {
-  name: string;
-
-  type?: 'text' | 'email' | 'number' | 'date' | 'textarea';
-  id: string;
+const initFormValues: AdsFormType = {
+  title: 'Zolepjove "Huskis"',
+  description: 'Nauja, greita, pirkta pries metus, puikiai pjauna zole',
+  price: 90,
+  phone: '+37807353',
+  TYPE: 'sell',
+  town: 'Klaipeda',
+  category: 'Automobiliai',
 };
-
-function InputEl({ name, type = 'text', id }: InputElProps) {
-  return (
-    <label>
-      {name}
-      <input type={type} id={id} name={name} />
-    </label>
-  );
-}
 
 export default function AddAdsPage() {
   // add formik
-  const formik = useFormik({});
+  const formik = useFormik<AdsFormType>({
+    initialValues: { ...initFormValues },
+    onSubmit: (values) => {
+      console.log('values ===', JSON.stringify(values, null, 2));
+      // sendDataToBe(data)
+    },
+  });
+
+  function sendDataToBe(data) {
+    //
+  }
+
+  console.log('formik ===', formik);
   return (
     <div className='container'>
       <div className='adsContainer'>
         <h1 className='title'>Naujo skelbimo puslapis</h1>
         <p className='text'>Sveiki atvyke į skelbimo pridėjimo puslapąį.</p>
-      </div>
-      <form noValidate className='adsForm'>
-        <InputEl name='Enter Title' id='title' type='text' />
-        <label>Title: </label>
-        <input type='text' name='title' placeholder='Enter title' />
 
-        <label>Description: </label>
-        <input
+        <button className='btn'>
+          <i className='bi bi-plus-square'></i> Sukurti naują skelbimą
+        </button>
+      </div>
+      <form onSubmit={formik.handleSubmit} noValidate className='adsForm'>
+        <InputEl
+          formik={formik}
+          id='title'
           type='text'
-          name='description'
-          placeholder='Provide Description'
+          placeholder='Skelbimo pavadinimas'
         />
 
-        <label>Price: </label>
-        <input type='text' name='price' placeholder='Price' />
+        <InputEl
+          formik={formik}
+          type='text'
+          id='description'
+          placeholder='Aprašykite savo skelbimą'
+        />
 
-        <label>Phone: </label>
-        <input type='text' name='phone' placeholder='Phone' />
+        <InputEl
+          formik={formik}
+          type='number'
+          id='price '
+          placeholder='Kaina'
+        />
 
-        <label>Type:</label>
+        <InputEl
+          formik={formik}
+          type='text'
+          id='phone'
+          placeholder='Kontaktinis telefonas'
+        />
+
         <select id='type' name='type'>
+          <option value='' disabled selected>
+            Pasirinkite skelbimo tipą
+          </option>
           <option value='type1'>sell</option>
           <option value='type2'>buy</option>
           <option value='type3'>rent</option>
         </select>
 
-        <label>Town:</label>
         <select id='town' name='town'>
+          <option value='' disabled selected>
+            Pasirinkite miestą
+          </option>
           <option value='town1'>Vilnius</option>
           <option value='town2'>Kaunas</option>
           <option value='town3'>Klaipeda</option>
         </select>
 
-        <label>Category:</label>
         <select id='category' name='category'>
+          <option value='' disabled selected>
+            Pasirinkite kategorija
+          </option>
           <option value='category1'>Neklinojamas turtas</option>
           <option value='category2'>Automobiliai</option>
           <option value='category3'>Drabuziai</option>
         </select>
 
-        <button className='btn'>
-          Pridėti skelbimą <i className='bi bi-plus-square'></i>
+        <button type='submit' className='btn'>
+          Patvirtinti <i className='bi bi-check'></i>
         </button>
       </form>
     </div>
