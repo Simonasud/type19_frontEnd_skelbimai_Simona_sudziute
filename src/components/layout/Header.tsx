@@ -24,10 +24,6 @@ function Header() {
 
   const [theme, setTheme] = useState('light');
 
-  function closeMenu() {
-    //
-  }
-
   const handleLightThemeClick = () => {
     setTheme('light');
     document.body.classList.remove('darkMode');

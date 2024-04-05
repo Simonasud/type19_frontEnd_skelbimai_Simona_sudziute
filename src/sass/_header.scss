@@ -102,6 +102,7 @@
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
+  z-index: 0;
 }
 
 
@@ -146,7 +147,7 @@
   min-width: 80px;
   transform: translateY(-200%);
   overflow: hidden;
-  z-index: 1;
+  z-index: -1;
   transition: transform 0.2s ease-in-out;
   box-sizing: content-box;
 }
