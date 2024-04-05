@@ -5,11 +5,15 @@ import ThemeSwitcher from '../UI/ThemeSwitcher';
 type NavItemProps = {
   to: string;
   children: string;
+  subItem?: boolean;
 };
 
-export function NavItem({ to, children }: NavItemProps) {
+export function NavItem({ to, children, subItem }: NavItemProps) {
   return (
-    <NavLink className='headerNavLink' to={to}>
+    <NavLink
+      className={`headerNavLink ${subItem ? 'smaller' : 'larger'} `}
+      to={to}
+    >
       {children}
     </NavLink>
   );
@@ -19,6 +23,10 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [theme, setTheme] = useState('light');
+
+  function closeMenu() {
+    //
+  }
 
   const handleLightThemeClick = () => {
     setTheme('light');
@@ -43,8 +51,10 @@ function Header() {
             <li className='headerLi'>
               <NavItem to='/ads'>Ads</NavItem>
               <ul className='subMenu'>
-                <li className='headerLi'>
-                  <NavItem to='/ads/add'>New add</NavItem>
+                <li className=''>
+                  <NavItem subItem to='/ads/add'>
+                    New add
+                  </NavItem>
                 </li>
               </ul>
             </li>
@@ -52,11 +62,15 @@ function Header() {
             <li className='headerLi'>
               <NavItem to='/user'>User</NavItem>
               <ul className='subMenu'>
-                <li className='headerLi'>
-                  <NavItem to='/login'>Login</NavItem>
+                <li className=''>
+                  <NavItem subItem to='/login'>
+                    Login
+                  </NavItem>
                 </li>
-                <li className='headerLi'>
-                  <NavItem to='/register'>Register</NavItem>
+                <li className=''>
+                  <NavItem subItem to='/register'>
+                    Register
+                  </NavItem>
                 </li>
               </ul>
             </li>

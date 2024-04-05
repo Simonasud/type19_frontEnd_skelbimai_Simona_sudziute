@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -50,6 +49,7 @@ ul {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
 }
 
 .darkMode .header {
@@ -93,7 +93,7 @@ ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -101,7 +101,11 @@ ul {
 }
 
 .headerNavLink {
-  font-size: 18px;
+  font-size: 20px;
+}
+
+.headerNavLink.smaller {
+  font-size: 16px;
 }
 
 .headerNavLink:hover {
@@ -125,7 +129,7 @@ ul {
 
 .mobileMenu {
   position: fixed;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.9);
   color: #3f3f3f;
   right: 0;
   top: 54px;
@@ -135,7 +139,7 @@ ul {
 }
 
 .darkMode .mobileMenu {
-  background-color: #3f3f3f;
+  background-color: rgba(63, 63, 63, 0.9);
   color: #ffffff;
 }
 
@@ -151,7 +155,7 @@ ul {
 .subMenu {
   padding-left: 10px;
   padding-right: 10px;
-  list-style: disc inside;
+  padding-top: 10px;
 }
 
 @media screen and (min-width: 768px) {
@@ -162,7 +166,7 @@ ul {
     display: block;
   }
   .headerNav {
-    display: block !important; /* Svarbu, kad šis stilius perrašytų anksčiau nustatytą 'display: none' */
+    display: block !important;
   }
   .headerUl {
     -webkit-box-orient: horizontal;
@@ -170,8 +174,39 @@ ul {
         -ms-flex-direction: row;
             flex-direction: row;
   }
+  .headerLi {
+    position: relative;
+    z-index: 1;
+  }
+  .headerLi:hover .subMenu {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+    z-index: 1;
+  }
   .subMenu {
-    display: none;
+    border: 1px solid transparent;
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+    position: absolute;
+    top: 100%;
+    padding-top: 15px;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    min-width: 80px;
+    -webkit-transform: translateY(-200%);
+            transform: translateY(-200%);
+    overflow: hidden;
+    z-index: 1;
+    -webkit-transition: -webkit-transform 0.2s ease-in-out;
+    transition: -webkit-transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+  }
+  .darkMode .subMenu {
+    border: 1px solid transparent;
+    background-color: rgba(63, 63, 63, 0.5);
   }
 }
 .adsContainer {

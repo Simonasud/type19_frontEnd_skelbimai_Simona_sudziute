@@ -5,6 +5,7 @@
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
+  position: relative;
 }
 
 .darkMode .header {
@@ -40,16 +41,24 @@
 
 .headerUl {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-direction: column;
 }
 
-.headerNavLink {
-  font-size: 18px;
+ .headerNavLink {
+  font-size: 20px;
 }
+
+
+.headerNavLink.smaller {
+  font-size: 16px;
+}
+
+
 
 .headerNavLink:hover {
   color: $secondary;
+  
 }
 
 .burgerBtn, .x-lg {
@@ -69,7 +78,7 @@
 
 .mobileMenu {
   position: fixed;
-  background-color: $tertiary;
+  background-color: rgba(255, 255, 255, 0.9);
   color: $primary;
   right: 0;
   top: 54px;
@@ -79,7 +88,7 @@
 }
 
 .darkMode .mobileMenu {
-  background-color: $primary;
+  background-color: rgba(63, 63, 63, 0.9);
   color: $tertiary;
 }
 
@@ -88,11 +97,14 @@
   align-items: center;
 }
 
+
 .subMenu {
   padding-left: 10px;
   padding-right: 10px;
-  list-style: disc inside;
+  padding-top: 10px;
 }
+
+
 
 @media screen and (min-width: 768px) {
   .burgerBtn {
@@ -104,16 +116,44 @@
   }
 
   .headerNav {
-    display: block !important; /* Svarbu, kad šis stilius perrašytų anksčiau nustatytą 'display: none' */
+    display: block !important; 
   }
 
   .headerUl {
     flex-direction: row;
-  }
+  }  
+ 
 
-  .subMenu {
-    display: none;
-  }
+  .headerLi {
+    position: relative;
+    z-index: 1;
+    }
 
-  
+    .headerLi:hover .subMenu {
+      transform: translateY(0);
+      z-index: 1;
+    }
+
+.subMenu {
+  border: 1px solid transparent;
+  border-radius: 0 0 10px 10px;
+  padding: 15px;
+  position: absolute;
+  top: calc(100%);
+  padding-top: 15px;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  min-width: 80px;
+  transform: translateY(-200%);
+  overflow: hidden;
+  z-index: 1;
+  transition: transform 0.2s ease-in-out;
+  box-sizing: content-box;
 }
+.darkMode .subMenu{
+  border: 1px solid transparent;
+  background-color: rgba(63, 63, 63, 0.5); 
+}
+}
+
+
