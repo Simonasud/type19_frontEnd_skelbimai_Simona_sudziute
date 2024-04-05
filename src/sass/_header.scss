@@ -3,6 +3,13 @@
   color: $primary;
   padding-top: 15px;
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.darkMode .header {
+  background-color: $primary;
+  color: $tertiary;
 }
 
 .headerContainer {
@@ -27,6 +34,10 @@
   margin: 2px;
 }
 
+.darkMode .headerSpan {
+  border: 1px solid $tertiary;
+}
+
 .headerUl {
   display: flex;
   gap: 10px;
@@ -48,13 +59,13 @@
   font-size: 24px;
 }
 
-
+.darkMode .burgerBtn, .x-lg {
+  color: $tertiary;
+}
 
 .close{
   display: none;
 }
-
-
 
 .mobileMenu {
   position: fixed;
@@ -65,7 +76,22 @@
   bottom: 0;
   text-align: left;
   min-width: 200px;
- 
+}
+
+.darkMode .mobileMenu {
+  background-color: $primary;
+  color: $tertiary;
+}
+
+.burgerMenu {
+  display: flex;
+  align-items: center;
+}
+
+.subMenu {
+  padding-left: 10px;
+  padding-right: 10px;
+  list-style: disc inside;
 }
 
 @media screen and (min-width: 768px) {
@@ -83,6 +109,10 @@
 
   .headerUl {
     flex-direction: row;
+  }
+
+  .subMenu {
+    display: none;
   }
 
   

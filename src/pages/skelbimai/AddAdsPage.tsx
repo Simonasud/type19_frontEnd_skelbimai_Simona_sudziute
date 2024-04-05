@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import { AdsFormType } from '../../types/types';
 import InputEl from '../../components/UI/InputEl';
+import { useState } from 'react';
 
 const initFormValues: AdsFormType = {
   title: 'Zolepjove "Huskis"',
@@ -13,6 +14,7 @@ const initFormValues: AdsFormType = {
 };
 
 export default function AddAdsPage() {
+  const [fillAdd, setFillAdd] = useState(false);
   // add formik
   const formik = useFormik<AdsFormType>({
     initialValues: { ...initFormValues },
@@ -33,7 +35,7 @@ export default function AddAdsPage() {
         <h1 className='title'>Naujo skelbimo puslapis</h1>
         <p className='text'>Sveiki atvyke į skelbimo pridėjimo puslapąį.</p>
 
-        <button className='btn'>
+        <button onClick={() => setFillAdd(!fillAdd)} className='btn'>
           <i className='bi bi-plus-square'></i> Sukurti naują skelbimą
         </button>
       </div>

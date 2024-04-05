@@ -27,3 +27,9 @@ export type AdsFormType = {
   town: string,
   category: string,
 }
+
+export type ThemeSwitcherProps = {
+  onLightThemeClick: () => void;
+  onDarkThemeClick: () => void;
+  theme: string;
+};

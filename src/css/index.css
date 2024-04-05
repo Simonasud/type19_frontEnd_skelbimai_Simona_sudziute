@@ -48,6 +48,13 @@ ul {
   color: #3f3f3f;
   padding-top: 15px;
   padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.darkMode .header {
+  background-color: #3f3f3f;
+  color: #ffffff;
 }
 
 .headerContainer {
@@ -78,6 +85,10 @@ ul {
   margin: 2px;
 }
 
+.darkMode .headerSpan {
+  border: 1px solid #ffffff;
+}
+
 .headerUl {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -104,6 +115,10 @@ ul {
   font-size: 24px;
 }
 
+.darkMode .burgerBtn, .x-lg {
+  color: #ffffff;
+}
+
 .close {
   display: none;
 }
@@ -117,6 +132,26 @@ ul {
   bottom: 0;
   text-align: left;
   min-width: 200px;
+}
+
+.darkMode .mobileMenu {
+  background-color: #3f3f3f;
+  color: #ffffff;
+}
+
+.burgerMenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.subMenu {
+  padding-left: 10px;
+  padding-right: 10px;
+  list-style: disc inside;
 }
 
 @media screen and (min-width: 768px) {
@@ -135,6 +170,9 @@ ul {
         -ms-flex-direction: row;
             flex-direction: row;
   }
+  .subMenu {
+    display: none;
+  }
 }
 .adsContainer {
   padding-top: 20px;
@@ -149,6 +187,7 @@ ul {
   font-size: 12px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   padding-bottom: 40px;
+  padding-top: 10px;
 }
 
 .adsUl {
@@ -204,4 +243,23 @@ ul {
   padding-left: 0;
   color: #0066cc;
   padding-bottom: 10px;
+}
+
+.themeIcon {
+  border: transparent;
+  background-color: transparent;
+  color: #3f3f3f;
+  font-size: 20px;
+}
+
+.themeIcon .bi-brightness-high {
+  color: #ff6168;
+}
+
+.darkMode .themeIcon .bi-moon-stars-fill {
+  color: #ff6168;
+}
+
+.darkMode .themeIcon .bi-brightness-high {
+  color: #ffffff;
 }/*# sourceMappingURL=index.css.map */

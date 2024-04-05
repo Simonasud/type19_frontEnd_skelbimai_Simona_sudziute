@@ -1,0 +1,18 @@
+.themeIcon {
+border: transparent;
+background-color: transparent;
+color: $primary;
+font-size: 20px;
+}
+
+.themeIcon .bi-brightness-high {
+  color: $secondary;
+}
+
+.darkMode .themeIcon .bi-moon-stars-fill{
+  color: $secondary;
+
+}
+.darkMode .themeIcon .bi-brightness-high {
+  color: $tertiary;
+}
