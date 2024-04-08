@@ -1,4 +1,79 @@
+.adsContainer{
+  background-color: $tertiary;
+}
+
+.darkMode .adsContainer {
+background-color: $darkerPrimary;
+}
+
 .adsForm {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 10px; }
+  display: flex;
+  flex-direction: column; 
+  border: 1px solid $primary;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.darkMode .adsForm {
+  border: 1px solid $tertiary;
+}
+
+.formLabel {
+  padding-left: 10px;
+}
+
+ .formInput {
+  border: 1px solid transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  font-style: italic;
+  color: $primary;
+  background-color: transparent;
+  margin-bottom: 10px;
+  
+ }
+
+ .formInput:focus {
+  outline: none;
+}
+
+.darkMode .formInput {
+  color: $darkerTertiary;
+}
+
+
+ .Dropdown-control {
+  border: 1px solid $primary;
+  border-radius: 10px;
+  padding: 5px 0 5px 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  color: $primary;
+ }
+
+
+ .darkMode .Dropdown-control {
+  border: 1px solid $tertiary;
+  color: $darkerTertiary;
+ }
+
+
+
+.Dropdown-option.is-selected {
+  background-color: transparent;
+  color: $primary;
+  font-style: italic;
+}
+
+.darkMode .Dropdown-option {
+  background-color:  $primary;
+  color: $darkerTertiary;
+ }
+
+ .darkMode .btn {
+  color: $lighterQuaternary;
+ }
+

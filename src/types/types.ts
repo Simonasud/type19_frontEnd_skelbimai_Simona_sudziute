@@ -23,10 +23,11 @@ export type AdsFormType = {
   description: string,
   price: number,
   phone: string,
-  TYPE: string,
+  type: string,
   town: string,
-  category: string,
+  category: string;
 }
+
 
 export type ThemeSwitcherProps = {
   onLightThemeClick: () => void;

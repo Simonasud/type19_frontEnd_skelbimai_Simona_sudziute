@@ -1,21 +1,32 @@
 import { useFormik } from 'formik';
 import { AdsFormType } from '../../types/types';
 import InputEl from '../../components/UI/InputEl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import MySelectDropdown from '../../components/UI/SelectEl';
 
 const initFormValues: AdsFormType = {
-  title: 'Zolepjove "Huskis"',
-  description: 'Nauja, greita, pirkta pries metus, puikiai pjauna zole',
-  price: 90,
-  phone: '+37807353',
-  TYPE: 'sell',
-  town: 'Klaipeda',
-  category: 'Automobiliai',
+  title: '',
+  description: '',
+  price: 0,
+  phone: '',
+  type: '',
+  town: '',
+  category: '',
 };
 
 export default function AddAdsPage() {
   const [fillAdd, setFillAdd] = useState(false);
-  // add formik
+  const [theme, setTheme] = useState('light'); // Temos būsena
+
+  useEffect(() => {
+    const isDarkModeEnabled = /* Jūsų sąlyga */ false; // Čia nustatote, ar tamsusis režimas įjungtas
+    if (isDarkModeEnabled) {
+      setTheme('dark'); // Jei tamsusis režimas įjungtas, nustatykite temą kaip tamsiąją
+    } else {
+      setTheme('light'); // Kitu atveju, nustatykite temą kaip šviesiąją
+    }
+  }, []);
+
   const formik = useFormik<AdsFormType>({
     initialValues: { ...initFormValues },
     onSubmit: (values) => {
@@ -30,75 +41,99 @@ export default function AddAdsPage() {
 
   console.log('formik ===', formik);
   return (
-    <div className='container'>
-      <div className='adsContainer'>
-        <h1 className='title'>Naujo skelbimo puslapis</h1>
-        <p className='text'>Sveiki atvyke į skelbimo pridėjimo puslapąį.</p>
-
+    <div
+      className={`container adsContainer header ${
+        theme === 'dark' ? 'darkMode' : ''
+      }`}
+    >
+      <div className=''>
+        <h1 className='title'>Create New Listing Page</h1>
+        <p className='text'>
+          Ready to sell, rent, or trade? Create your listing now and let the
+          world know!
+        </p>
         <button onClick={() => setFillAdd(!fillAdd)} className='btn'>
           <i className='bi bi-plus-square'></i> Sukurti naują skelbimą
         </button>
       </div>
-      <form onSubmit={formik.handleSubmit} noValidate className='adsForm'>
-        <InputEl
-          formik={formik}
-          id='title'
-          type='text'
-          placeholder='Skelbimo pavadinimas'
-        />
+      {fillAdd && (
+        <form onSubmit={formik.handleSubmit} noValidate className='adsForm'>
+          <InputEl
+            children='Title'
+            formik={formik}
+            id='title'
+            type='text'
+            placeholder='Enter listing title'
+          />
 
-        <InputEl
-          formik={formik}
-          type='text'
-          id='description'
-          placeholder='Aprašykite savo skelbimą'
-        />
+          <InputEl
+            children='Description'
+            formik={formik}
+            type='textarea'
+            id='description'
+            placeholder='Describe listing in a few words'
+          />
 
-        <InputEl
-          formik={formik}
-          type='number'
-          id='price '
-          placeholder='Kaina'
-        />
+          <InputEl
+            children='Price'
+            formik={formik}
+            type='number'
+            id='price'
+            placeholder=''
+          />
 
-        <InputEl
-          formik={formik}
-          type='text'
-          id='phone'
-          placeholder='Kontaktinis telefonas'
-        />
+          <InputEl
+            children='Phone'
+            formik={formik}
+            type='text'
+            id='phone'
+            placeholder='Provide contact number'
+          />
 
-        <select id='type' name='type'>
-          <option value='' disabled selected>
-            Pasirinkite skelbimo tipą
-          </option>
-          <option value='type1'>sell</option>
-          <option value='type2'>buy</option>
-          <option value='type3'>rent</option>
-        </select>
+          <MySelectDropdown
+            placeholder='-- type --'
+            value={formik.values.type}
+            onChange={(selected) =>
+              formik.setFieldValue('type', selected.value)
+            }
+            options={[
+              { value: 'option1', label: 'buy' },
+              { value: 'option2', label: 'sell' },
+              { value: 'option3', label: 'rent' },
+            ]}
+          />
 
-        <select id='town' name='town'>
-          <option value='' disabled selected>
-            Pasirinkite miestą
-          </option>
-          <option value='town1'>Vilnius</option>
-          <option value='town2'>Kaunas</option>
-          <option value='town3'>Klaipeda</option>
-        </select>
+          <MySelectDropdown
+            placeholder='-- town --'
+            value={formik.values.town}
+            onChange={(selected) =>
+              formik.setFieldValue('town', selected.value)
+            }
+            options={[
+              { value: 'option1', label: 'Vilnius' },
+              { value: 'option2', label: 'Kaunas' },
+              { value: 'option3', label: 'Klaipeda' },
+            ]}
+          />
 
-        <select id='category' name='category'>
-          <option value='' disabled selected>
-            Pasirinkite kategorija
-          </option>
-          <option value='category1'>Neklinojamas turtas</option>
-          <option value='category2'>Automobiliai</option>
-          <option value='category3'>Drabuziai</option>
-        </select>
+          <MySelectDropdown
+            placeholder='-- category --'
+            value={formik.values.category}
+            onChange={(selected) =>
+              formik.setFieldValue('category', selected.value)
+            }
+            options={[
+              { value: 'option1', label: 'Nekilnojamas turtas' },
+              { value: 'option2', label: 'Automobiliai' },
+              { value: 'option3', label: 'Drabužiai' },
+            ]}
+          />
 
-        <button type='submit' className='btn'>
-          Patvirtinti <i className='bi bi-check'></i>
-        </button>
-      </form>
+          <button type='submit' className='btn'>
+            Patvirtinti <i className='bi bi-check'></i>
+          </button>
+        </form>
+      )}
     </div>
   );
 }

@@ -1,8 +1,12 @@
+import { FormikProps } from 'formik';
+import { AdsFormType } from '../../types/types';
+
 type InputElProps = {
   placeholder: string;
-  type?: 'text' | 'email' | 'number' | 'date' | 'textarea';
-  id: string;
-  formik: any;
+  type?: 'text' | 'number' | 'textarea';
+  id: keyof AdsFormType;
+  formik: FormikProps<AdsFormType>;
+  children?: string;
 };
 
 export default function InputEl({
@@ -10,16 +14,19 @@ export default function InputEl({
   type = 'text',
   id,
   placeholder,
+  children,
 }: InputElProps) {
+  const Element = type === 'textarea' ? 'textarea' : 'input';
   return (
     <label className='formlabel'>
-      <input
+      {children}
+      <Element
         value={formik.values[id]}
         onChange={formik.handleChange}
-        className='formInput'
         type={type}
         id={id}
         placeholder={placeholder}
+        className='formInput'
       />
     </label>
   );

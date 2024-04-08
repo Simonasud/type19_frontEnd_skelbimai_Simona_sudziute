@@ -6,24 +6,44 @@
 }
 
 @mixin btn {
-border: transparent; 
-background-color: transparent;
-padding-left: 0;
-color: $quaternary;
-padding-bottom: 10px;
+  border: transparent; 
+  background-color: transparent;
+  padding-left: 0;
+  color: $quaternary;
+  padding-bottom: 10px;
+
 }
 
+
 @mixin pageTitleStyle {
-  .titleitle {
+  .title {
     font-size: 40px;
   }
 
   .text {
-    color: $secondary;
+    color: $primary;
     font-size: 12px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding-bottom: 40px;
     padding-top: 10px;
+  }
+  .additionalText {
+    color: $primary;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding-bottom: 20px;
+  }
+
+  .darkMode {
+    .title {
+      color: $darkerTertiary;
+    }
+    .text {
+      color: $tertiary;
+    }
+
+    .additionalText {
+      color: $tertiary;
+    }
   }
 }
 
