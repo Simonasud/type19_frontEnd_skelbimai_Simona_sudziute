@@ -67,7 +67,7 @@ function SingleAddPage() {
             <button className='btn'>
               <i className='bi bi-arrow-left'></i> Go back
             </button>
-            <button onClick={handleDeleteAdd} className='btn'>
+            <button onClick={handleDeleteAdd} className='deleteBtn'>
               Delete
             </button>
           </div>

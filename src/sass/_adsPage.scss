@@ -2,9 +2,6 @@
   padding-top: 20px;
 }
 
-@include pageTitleStyle;
-
-
 .adsUl {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -32,6 +29,10 @@
 .adsPrice {
   
   font-size: 14px;
+}
+
+.deleteBtn  {
+  @include delete;
 }
 
 .adsAlert {
