@@ -17,17 +17,21 @@ export default function InputEl({
   children,
 }: InputElProps) {
   const Element = type === 'textarea' ? 'textarea' : 'input';
+
+  const isError = formik.errors[id] && formik.touched[id];
   return (
     <label className='formlabel'>
-      {children}
+      <span className='labelTitle'>{children}</span>
       <Element
         value={formik.values[id]}
         onChange={formik.handleChange}
+        onBlur={formik.handleBlur}
         type={type}
         id={id}
         placeholder={placeholder}
         className='formInput'
       />
+      {isError && <span className='formError'>{formik.errors[id]}</span>}
     </label>
   );
 }

@@ -6,6 +6,7 @@ import { beBaseurl } from '../../config';
 import { AdsObjType } from '../../types/types';
 
 import AddCard from '../../components/ads/AddCard';
+import FilterBox from '../../components/UI/FilterBox';
 
 function AdsPage() {
   const [adsArr, setAdsArr] = useState<AdsObjType[] | null>(null);
@@ -51,6 +52,18 @@ function AdsPage() {
           ))}
         </ul>
       </div>
+    </div>
+  );
+}
+
+export function AdsFilters() {
+  return (
+    <div>
+      <FilterBox title='Filter by town'>
+        <div>pagal</div>
+        <div>pagal</div>
+        <div>pagal</div>
+      </FilterBox>
     </div>
   );
 }

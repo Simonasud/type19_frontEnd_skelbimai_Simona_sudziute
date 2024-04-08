@@ -1,4 +1,3 @@
-//
 import Dropdown, { Option } from 'react-dropdown';
 import 'react-dropdown/style.css';
 
@@ -12,6 +11,7 @@ type MySelectDropdownProps = {
   placeholder: string;
   options: SelectOption[];
   onChange: (selected: Option) => void;
+  errorMessage?: string;
 };
 
 export default function MySelectDropdown({
@@ -19,14 +19,18 @@ export default function MySelectDropdown({
   placeholder,
   options,
   onChange,
+  errorMessage,
 }: MySelectDropdownProps) {
   return (
-    <Dropdown
-      options={options}
-      onChange={onChange}
-      value={value}
-      placeholder={placeholder}
-      className='customDropDown'
-    />
+    <>
+      <Dropdown
+        options={options}
+        onChange={(selected: Option) => onChange(selected)}
+        value={value}
+        placeholder={placeholder}
+        className='customDropDown'
+      />
+      {errorMessage && <span className='formError'>{errorMessage}</span>}
+    </>
   );
 }

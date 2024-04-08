@@ -24,6 +24,10 @@ background-color: $darkerPrimary;
   padding-left: 10px;
 }
 
+.labelTitle {
+  text-decoration: underline;
+}
+
  .formInput {
   border: 1px solid transparent;
   padding-top: 5px;
@@ -75,5 +79,16 @@ background-color: $darkerPrimary;
 
  .darkMode .btn {
   color: $lighterQuaternary;
+ }
+
+ .formError {
+  background-color: rgb(245, 200, 200);
+  display: block;
+  color: rgb(236, 69, 69);
+  border: 1 px solid rgb(236, 69, 69);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+margin-bottom: 6px;
  }
 

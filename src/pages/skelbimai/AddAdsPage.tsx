@@ -3,13 +3,17 @@ import { AdsFormType } from '../../types/types';
 import InputEl from '../../components/UI/InputEl';
 import { useEffect, useState } from 'react';
 import MySelectDropdown from '../../components/UI/SelectEl';
+import axios from 'axios';
+import { beBaseurl } from '../../config';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 const initFormValues: AdsFormType = {
   title: '',
   description: '',
   price: 0,
   phone: '',
-  type: '',
+  TYPE: '',
   town: '',
   category: '',
 };
@@ -27,19 +31,49 @@ export default function AddAdsPage() {
     }
   }, []);
 
+  const AdsValidationSchema = Yup.object({
+    title: Yup.string().min(3).max(255).required(),
+    description: Yup.string().min(3).max(255).required(),
+    price: Yup.number().min(0).required(),
+    phone: Yup.string().min(3).max(255).required(),
+    TYPE: Yup.string().required(),
+    town: Yup.string().required(),
+    category: Yup.string().required(),
+  });
+
   const formik = useFormik<AdsFormType>({
     initialValues: { ...initFormValues },
+    validationSchema: AdsValidationSchema,
+
     onSubmit: (values) => {
       console.log('values ===', JSON.stringify(values, null, 2));
-      // sendDataToBe(data)
+      sendDataToBe(values);
     },
   });
 
-  function sendDataToBe(data) {
+  const navigate = useNavigate();
+
+  function sendDataToBe(data: AdsFormType) {
+    axios
+      .post(`${beBaseurl}/ads`, data)
+      .then((resp) => {
+        console.log('resp ===', resp);
+        if (resp.status === 200) {
+          navigate('/ads');
+        } else {
+          console.warn('something wrong with back end status');
+        }
+      })
+      .catch((error) => {
+        console.warn('ivyko klaida:', error);
+      });
     //
   }
 
-  console.log('formik ===', formik);
+  console.log('formik.errors ===', formik.errors);
+
+  console.log('formik ===', formik.values);
+
   return (
     <div
       className={`container adsContainer header ${
@@ -89,23 +123,23 @@ export default function AddAdsPage() {
             id='phone'
             placeholder='Provide contact number'
           />
-
           <MySelectDropdown
             placeholder='-- type --'
-            value={formik.values.type}
-            onChange={(selected) =>
-              formik.setFieldValue('type', selected.value)
+            TYPE={formik.values.TYPE} // Pakeičiama 'value' į 'TYPE'
+            onChange={
+              (selected) => formik.setFieldValue('TYPE', selected.value) // Pakeičiama 'type' į 'TYPE'
             }
             options={[
               { value: 'option1', label: 'buy' },
               { value: 'option2', label: 'sell' },
               { value: 'option3', label: 'rent' },
             ]}
+            errorMessage={formik.errors.TYPE} // Pakeičiama 'errorMessage' į 'formik.errors.TYPE'
           />
 
           <MySelectDropdown
             placeholder='-- town --'
-            value={formik.values.town}
+            town={formik.values.town} // Pakeičiama 'value' į 'town'
             onChange={(selected) =>
               formik.setFieldValue('town', selected.value)
             }
@@ -114,11 +148,11 @@ export default function AddAdsPage() {
               { value: 'option2', label: 'Kaunas' },
               { value: 'option3', label: 'Klaipeda' },
             ]}
+            errorMessage={formik.errors.town} // Pakeičiama 'errorMessage' į 'formik.errors.town'
           />
-
           <MySelectDropdown
             placeholder='-- category --'
-            value={formik.values.category}
+            category={formik.values.category} // Pakeičiama 'value' į 'category'
             onChange={(selected) =>
               formik.setFieldValue('category', selected.value)
             }
@@ -127,6 +161,7 @@ export default function AddAdsPage() {
               { value: 'option2', label: 'Automobiliai' },
               { value: 'option3', label: 'Drabužiai' },
             ]}
+            errorMessage={formik.errors.category} // Pakeičiama 'errorMessage' į 'formik.errors.category'
           />
 
           <button type='submit' className='btn'>

@@ -1,6 +1,6 @@
 //
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { AdsObjType } from '../../types/types';
 import { beBaseurl } from '../../config';
 import axios from 'axios';
@@ -16,9 +16,12 @@ function SingleAddPage() {
   const [currentAdd, setCurrentAdd] = useState<AdsObjType | null>(null);
   // parsisiusti Add objekta
 
+  const cUrl = `${beBaseurl}/ads/${adsId}`;
+
   useEffect(() => {
-    getAdd(`${beBaseurl}/ads/${adsId}`);
-  }, [adsId]);
+    getAdd(cUrl);
+    console.log('cUrl ===', cUrl);
+  }, [cUrl]);
 
   async function getAdd(url: string) {
     try {
@@ -27,6 +30,18 @@ function SingleAddPage() {
       setCurrentAdd(resp.data);
     } catch (error) {
       console.warn('getAdd', error);
+    }
+  }
+
+  const navigate = useNavigate();
+  async function handleDeleteAdd() {
+    try {
+      const resp = await axios.delete(`${beBaseurl}`);
+      console.log('resp ===', resp);
+      navigate('/ads');
+    } catch (error) {
+      console.warn('error ===', error);
+      console.warn('klaida traukiant');
     }
   }
 
@@ -49,8 +64,12 @@ function SingleAddPage() {
           <h1>{currentAdd?.title}</h1>
           <p>{currentAdd?.description}</p>
           <div className='bottom'>
-            <button className='btn'>Go back</button>
-            <button className='btn'>Delete</button>
+            <button className='btn'>
+              <i className='bi bi-arrow-left'></i> Go back
+            </button>
+            <button onClick={handleDeleteAdd} className='btn'>
+              Delete
+            </button>
           </div>
         </div>
       </div>

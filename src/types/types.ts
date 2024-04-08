@@ -23,7 +23,7 @@ export type AdsFormType = {
   description: string,
   price: number,
   phone: string,
-  type: string,
+  TYPE: string,
   town: string,
   category: string;
 }
