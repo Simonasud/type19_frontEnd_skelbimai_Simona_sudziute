@@ -45,31 +45,26 @@ function Header() {
         <nav className={`${isMenuOpen ? 'mobileMenu' : 'close'}`}>
           <ul className='headerUl'>
             <li className='headerLi'>
-              <NavItem to='/ads'>Ads</NavItem>
+              <NavItem to='/'>Ads</NavItem>
               <ul className='subMenu'>
                 <li className=''>
-                  <NavItem subItem to='/ads/add'>
+                  <NavItem subItem to='/add'>
                     New add
                   </NavItem>
                 </li>
               </ul>
             </li>
 
-            <li className='headerLi'>
+            {/* <li className='headerLi'>
               <NavItem to='/user'>User</NavItem>
-              <ul className='subMenu'>
-                <li className=''>
-                  <NavItem subItem to='/login'>
-                    Login
-                  </NavItem>
-                </li>
-                <li className=''>
-                  <NavItem subItem to='/register'>
-                    Register
-                  </NavItem>
-                </li>
-              </ul>
+              </li> */}
+            <li>
+              <NavItem to='/user/register'>Register</NavItem>
             </li>
+            <li>
+              <NavItem to='/user/login'>Login</NavItem>
+            </li>
+
             <li className='headerLi'>
               <NavItem to='/town'>Town</NavItem>
             </li>

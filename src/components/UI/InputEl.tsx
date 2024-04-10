@@ -3,9 +3,11 @@ import { AdsFormType } from '../../types/types';
 
 type InputElProps = {
   placeholder: string;
-  type?: 'text' | 'number' | 'textarea';
-  id: keyof AdsFormType;
-  formik: FormikProps<AdsFormType>;
+  type?: 'text' | 'number' | 'textarea' | 'password' | 'email';
+  // id: keyof AdsFormType;
+  // formik: FormikProps<AdsFormType>;
+  id: string;
+  formik: any;
   children?: string;
 };
 

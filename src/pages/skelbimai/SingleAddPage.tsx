@@ -36,7 +36,7 @@ function SingleAddPage() {
   const navigate = useNavigate();
   async function handleDeleteAdd() {
     try {
-      const resp = await axios.delete(`${beBaseurl}`);
+      const resp = await axios.delete(`${beBaseurl}/:adsId`);
       console.log('resp ===', resp);
       navigate('/ads');
     } catch (error) {
@@ -53,6 +53,7 @@ function SingleAddPage() {
             Add listed on: {getNiceDate(currentAdd?.created_at || '')}
           </p>
           <p>Price: {currentAdd?.price}</p>
+          <p>{currentAdd?.TYPE}</p>
         </div>
         <div className='midle'>
           <img
@@ -60,9 +61,17 @@ function SingleAddPage() {
             alt={currentAdd?.title}
           />
         </div>
+        <div className=''>
+          <img src={'/img/' + currentAdd?.image_1} alt={currentAdd?.title} />
+          <img src={'/img/' + currentAdd?.image_2} alt={currentAdd?.title} />
+          <img src={'/img/' + currentAdd?.image_3} alt={currentAdd?.title} />
+          <img src={'/img/' + currentAdd?.image_4} alt={currentAdd?.title} />
+          <img src={'/img/' + currentAdd?.image_5} alt={currentAdd?.title} />
+        </div>
         <div className='right'>
           <h1>{currentAdd?.title}</h1>
           <p>{currentAdd?.description}</p>
+
           <div className='bottom'>
             <button className='btn'>
               <i className='bi bi-arrow-left'></i> Go back

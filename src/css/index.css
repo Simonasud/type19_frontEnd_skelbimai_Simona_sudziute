@@ -47,8 +47,8 @@ ul {
   color: #3f3f3f;
   padding-top: 15px;
   padding-bottom: 10px;
-  padding-left: 10px;
   padding-right: 10px;
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -210,8 +210,37 @@ ul {
     background-color: rgba(63, 63, 63, 0.5);
   }
 }
+.adsPage {
+  background-color: #ffffff;
+  color: #3f3f3f;
+}
+
 .adsContainer {
   padding-top: 20px;
+}
+.adsContainer .title {
+  font-size: 40px;
+}
+.adsContainer .text {
+  color: #3f3f3f;
+  font-size: 12px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding-bottom: 40px;
+  padding-top: 10px;
+}
+.adsContainer .additionalText {
+  color: #3f3f3f;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding-bottom: 20px;
+}
+.adsContainer .darkMode .title {
+  color: #d5d1d1;
+}
+.adsContainer .darkMode .text {
+  color: #ffffff;
+}
+.adsContainer .darkMode .additionalText {
+  color: #ffffff;
 }
 
 .adsUl {

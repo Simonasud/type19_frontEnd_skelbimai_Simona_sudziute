@@ -1,5 +1,10 @@
+.adsPage {
+  background-color: $tertiary;
+  color: $primary;
+}
 .adsContainer {
   padding-top: 20px;
+  @include pageTitleStyle;
 }
 
 .adsUl {

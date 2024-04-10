@@ -3,7 +3,7 @@ import { AdsFormType } from '../../types/types';
 import InputEl from '../../components/UI/InputEl';
 import { useEffect, useState } from 'react';
 import MySelectDropdown from '../../components/UI/SelectEl';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { beBaseurl } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -65,14 +65,15 @@ export default function AddAdsPage() {
         }
       })
       .catch((error) => {
-        console.warn('ivyko klaida:', error);
+        const axiosErr = error as AxiosError;
+        console.warn('sendDataTobe ivyko klaida: ');
+        console.log(JSON.stringify(axiosErr.response?.data, null, 2));
+        if (axiosErr.response?.data) {
+          formik.setErrors(axiosErr.response.data);
+        }
       });
     //
   }
-
-  console.log('formik.errors ===', formik.errors);
-
-  console.log('formik ===', formik.values);
 
   return (
     <div

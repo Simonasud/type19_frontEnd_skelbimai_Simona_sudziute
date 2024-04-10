@@ -4,9 +4,8 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { beBaseurl } from '../../config';
 import { AdsObjType } from '../../types/types';
-
 import AddCard from '../../components/ads/AddCard';
-import FilterBox from '../../components/UI/FilterBox';
+import { AdsFilters } from '../../components/ads/AdsFilters';
 
 function AdsPage() {
   const [adsArr, setAdsArr] = useState<AdsObjType[] | null>(null);
@@ -14,56 +13,54 @@ function AdsPage() {
   const [isError, setIsError] = useState<string>('');
   console.log('adsArr ===', adsArr);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getAds(`${beBaseurl}/ads`).then((data) => {
-      setAdsArr(data);
-      setIsLoading(false);
-    });
-  }, []);
+  const [filterVal, setFilterVal] = useState('');
 
-  function getAds(url: string): Promise<AdsObjType[] | null> {
+  //filter?price=300
+  useEffect(() => {
+    if (filterVal) {
+      getPosts(`${beBaseurl}/ads/${filterVal}`);
+    } else {
+      getPosts(`${beBaseurl}/ads`);
+    }
+  }, [filterVal]);
+
+  function getPosts(url: string) {
+    setIsLoading(true);
     // su axios gaunam postus ir irasome i tripsArr
-    return axios
+    axios
       .get(url)
       .then((resp) => {
         // console.log('resp.data ===', resp.data);
-        return resp.data;
+        setAdsArr(resp.data);
       })
       .catch((error: Error) => {
         console.log('error ===', error);
         setIsError('Something went wrong, please try later');
         return null;
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   return (
-    <div className='container'>
-      <div className='adsContainer'>
+    <div className='adsPage'>
+      <div className='container adsContainer'>
         <h1 className='title'>Adds</h1>
         <p className='text'>Welcome to Adds Page</p>
         {isLoading && <p className='adsAlert'>Loading...</p>}
         {isError && <p className='adsError'>{isError}</p>}
-        <ul className='adsUl'>
-          {adsArr?.map((aObj) => (
-            <li key={aObj.id}>
-              <AddCard item={aObj} />
-            </li>
-          ))}
-        </ul>
+        <div className='container'>
+          <AdsFilters onFilterChange={setFilterVal} />
+          <ul className='adsUl'>
+            {adsArr?.map((aObj) => (
+              <li key={aObj.id}>
+                <AddCard item={aObj} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  );
-}
-
-export function AdsFilters() {
-  return (
-    <div>
-      <FilterBox title='Filter by town'>
-        <div>pagal</div>
-        <div>pagal</div>
-        <div>pagal</div>
-      </FilterBox>
     </div>
   );
 }
