@@ -1,14 +1,15 @@
-//Forma leidzianti registruoti nauja vartotoja su name, email, password, password_confirmation, avatar_url
-
 import { useFormik } from 'formik';
-import InputEl from '../../components/UI/InputEl';
+import InputEl from '../UI/InputEl';
 import * as Yup from 'yup';
+import axios from 'axios';
+import { beBaseurl } from '../../config';
+import { Link } from 'react-router-dom';
 
 type RegisterUserObjType = {
   name: string;
   email: string;
   password: string;
-  password_confirmation?: string;
+  password_confirmation: string;
   avatar_url: string;
 };
 
@@ -31,12 +32,25 @@ export default function Register() {
       avatar_url: Yup.string().url().nullable(),
     }),
     onSubmit: (values) => {
-      // console.log(values);
-      const finalObjToBack = { ...values };
-      delete finalObjToBack.password_confirmation;
+      const { password_confirmation, ...finalObjToBack } = values;
       console.log('finalObjToBack  ===', finalObjToBack);
+      sendRegisterToBack(finalObjToBack);
     },
   });
+
+  function sendRegisterToBack(
+    data: Omit<RegisterUserObjType, 'password_confirmation'>
+  ) {
+    axios
+      .post(`${beBaseurl}/user/register`, data)
+      .then((res) => {
+        console.log('res.data ===', res.data);
+        login(data.email);
+      })
+      .catch((err) => {
+        console.log('err ===', err.response.data);
+      });
+  }
   return (
     <div>
       <div className='container'>
@@ -74,6 +88,9 @@ export default function Register() {
             Register
           </button>
         </form>
+        <p>
+          Registered? <Link to={'/auth/login'}>login here</Link>
+        </p>
       </div>
     </div>
   );

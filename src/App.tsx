@@ -5,10 +5,10 @@ import Header from './components/layout/Header';
 import AdsPage from './pages/skelbimai/AdsPage.tsx';
 import SingleAddPage from './pages/skelbimai/SingleAddPage.tsx';
 import AddAdsPage from './pages/skelbimai/AddAdsPage.tsx';
-import UserPage from './pages/user/UserPage.tsx';
+import UserPage from './components/user/UserPage.tsx';
 import TownPage from './pages/town/TownPage.tsx';
-import Login from './pages/user/Login.tsx';
-import Register from './pages/user/Register.tsx';
+import Login from './components/user/Login.tsx';
+import Register from './components/user/Register.tsx';
 
 function App() {
   return (

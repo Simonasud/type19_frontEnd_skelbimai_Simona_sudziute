@@ -1,23 +1,20 @@
 import { FormikProps } from 'formik';
-import { AdsFormType } from '../../types/types';
 
-type InputElProps = {
+type InputElProps<T> = {
   placeholder: string;
   type?: 'text' | 'number' | 'textarea' | 'password' | 'email';
-  // id: keyof AdsFormType;
-  // formik: FormikProps<AdsFormType>;
-  id: string;
-  formik: any;
+  readonly id: keyof T;
+  formik: FormikProps<T>;
   children?: string;
 };
 
-export default function InputEl({
+export default function InputEl<T>({
   formik,
   type = 'text',
   id,
   placeholder,
   children,
-}: InputElProps) {
+}: InputElProps<T>) {
   const Element = type === 'textarea' ? 'textarea' : 'input';
 
   const isError = formik.errors[id] && formik.touched[id];
@@ -25,15 +22,19 @@ export default function InputEl({
     <label className='formlabel'>
       <span className='labelTitle'>{children}</span>
       <Element
-        value={formik.values[id]}
+        value={
+          formik.values[id] as string | number | readonly string[] | undefined
+        }
         onChange={formik.handleChange}
         onBlur={formik.handleBlur}
         type={type}
-        id={id}
+        id={id.toString()}
         placeholder={placeholder}
         className='formInput'
       />
-      {isError && <span className='formError'>{formik.errors[id]}</span>}
+      {isError && (
+        <span className='formError'>{formik.errors[id]?.toString()}</span>
+      )}
     </label>
   );
 }

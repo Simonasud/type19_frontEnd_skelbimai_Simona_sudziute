@@ -34,3 +34,11 @@ export type ThemeSwitcherProps = {
   onDarkThemeClick: () => void;
   theme: string;
 };
+
+export type UserObjType = {
+  id?: number;
+  name?: string;
+  email: string;
+  password: string;
+  avatar_url?: string;
+}
