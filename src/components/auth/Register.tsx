@@ -43,6 +43,7 @@ export default function Register() {
   ) {
     axios
       .post(`${beBaseurl}/user/register`, data)
+
       .then((res) => {
         console.log('res.data ===', res.data);
         login(data.email);
@@ -89,7 +90,7 @@ export default function Register() {
           </button>
         </form>
         <p>
-          Registered? <Link to={'/auth/login'}>login here</Link>
+          Registered? <Link to={'/user/login'}>login here</Link>
         </p>
       </div>
     </div>

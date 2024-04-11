@@ -51,7 +51,7 @@ function AdsPage() {
         {isLoading && <p className='adsAlert'>Loading...</p>}
         {isError && <p className='adsError'>{isError}</p>}
         <div className='container'>
-          <AdsFilters onFilterChange={setFilterVal} />
+          {/* <AdsFilters onFilterChange={setFilterVal} /> */}
           <ul className='adsUl'>
             {adsArr?.map((aObj) => (
               <li key={aObj.id}>

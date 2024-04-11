@@ -13,7 +13,7 @@ type AuthProviderProps = {
 
 export default function AuthProvider({ children }: AuthProviderProps) {
   const [email, setEmail] = useState('');
-  const isUserLoggedIn = !!email;
+  const isUserLoggedIn = Boolean(email);
   console.log('email Provide ctx ===', email);
   function login(email: string) {
     setEmail(email);

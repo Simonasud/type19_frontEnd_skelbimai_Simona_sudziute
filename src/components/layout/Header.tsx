@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import ThemeSwitcher from '../UI/ThemeSwitcher';
+import { useAuthCtx } from '../../store/AuthProvieder';
 
 type NavItemProps = {
   to: string;
@@ -20,6 +21,7 @@ export function NavItem({ to, children, subItem }: NavItemProps) {
 }
 
 function Header() {
+  const { isUserLooggedIn } = useAuthCtx();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [theme, setTheme] = useState('light');
@@ -58,12 +60,21 @@ function Header() {
             {/* <li className='headerLi'>
               <NavItem to='/user'>User</NavItem>
               </li> */}
-            <li>
-              <NavItem to='/user/register'>Register</NavItem>
-            </li>
-            <li>
-              <NavItem to='/user/login'>Login</NavItem>
-            </li>
+            {isUserLoggedIn && (
+              <li>
+                <NavItem to='/user/login'>Logout</NavItem>
+              </li>
+            )}
+            {isUserLoggedIn && (
+              <>
+                <li>
+                  <NavItem to='/user/register'>Register</NavItem>
+                </li>
+                <li>
+                  <NavItem to='/user/login'>Login</NavItem>
+                </li>
+              </>
+            )}
 
             <li className='headerLi'>
               <NavItem to='/town'>Town</NavItem>
