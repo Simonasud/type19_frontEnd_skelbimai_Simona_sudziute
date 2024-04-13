@@ -5,6 +5,7 @@ const AuthContext = createContext({
   logout: () => {},
   isUserLoggedIn: false,
   email: '',
+  userId: 0,
 });
 
 type AuthProviderProps = {
@@ -12,14 +13,28 @@ type AuthProviderProps = {
 };
 
 export default function AuthProvider({ children }: AuthProviderProps) {
-  const [email, setEmail] = useState('');
+  const emailFromLocalStore = localStorage.getItem('userEmail');
+  const [email, setEmail] = useState(emailFromLocalStore || '');
+  const idFromLocalStore = localStorage.getItem('userId');
+  const [userId, setUserId] = useState<number>(
+    idFromLocalStore ? +idFromLocalStore : 0
+  );
+
   const isUserLoggedIn = Boolean(email);
+
   console.log('email Provide ctx ===', email);
-  function login(email: string) {
+  console.log('userId ===', userId);
+
+  function login(email: string, id: number) {
     setEmail(email);
+    setUserId(id);
+    localStorage.setItem('userEmail', email);
+    localStorage.setItem('userId', id.toString());
   }
   function logout() {
     setEmail('');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userId');
   }
 
   const value = {
@@ -27,7 +42,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     logout,
     isUserLoggedIn,
     email,
+    userId,
   };
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

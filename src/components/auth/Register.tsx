@@ -2,36 +2,39 @@ import { useFormik } from 'formik';
 import InputEl from '../UI/InputEl';
 import * as Yup from 'yup';
 import axios from 'axios';
-import { beBaseurl } from '../../config';
 import { Link } from 'react-router-dom';
+import { useAuthCtx } from '../../store/AuthProvieder';
+// import { beBaseurl } from '../../config';
 
 type RegisterUserObjType = {
-  name: string;
+  NAME: string;
   email: string;
-  password: string;
+  PASSWORD: string;
   password_confirmation: string;
   avatar_url: string;
 };
 
 export default function Register() {
+  const { login } = useAuthCtx();
   const formik = useFormik<RegisterUserObjType>({
     initialValues: {
-      name: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      avatar_url: '',
+      NAME: 'James not Bond',
+      email: 'james@bond.email.lt',
+      PASSWORD: '234567',
+      password_confirmation: '234567',
+      avatar_url: 'https://www.example.com/avatar.jpg',
     },
     validationSchema: Yup.object({
-      name: Yup.string().min(3).max(255),
+      NAME: Yup.string().min(3).max(255),
       email: Yup.string().email().required(),
-      password: Yup.string().min(6).max(100).required(),
+      PASSWORD: Yup.string().min(6).max(100).required(),
       password_confirmation: Yup.string()
-        .oneOf([Yup.ref('password')], 'Passwords must match')
+        .oneOf([Yup.ref('PASSWORD')], 'Passwords must match')
         .required(),
       avatar_url: Yup.string().url().nullable(),
     }),
     onSubmit: (values) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { password_confirmation, ...finalObjToBack } = values;
       console.log('finalObjToBack  ===', finalObjToBack);
       sendRegisterToBack(finalObjToBack);
@@ -42,11 +45,10 @@ export default function Register() {
     data: Omit<RegisterUserObjType, 'password_confirmation'>
   ) {
     axios
-      .post(`${beBaseurl}/user/register`, data)
-
+      .post(`http://localhost:3000/api/auth/register`, data)
       .then((res) => {
         console.log('res.data ===', res.data);
-        login(data.email);
+        login(data.email, res.data.id || 0);
       })
       .catch((err) => {
         console.log('err ===', err.response.data);
@@ -59,7 +61,7 @@ export default function Register() {
 
         <form onSubmit={formik.handleSubmit}>
           <div className='container'>
-            <InputEl formik={formik} placeholder='Name' type='text' id='name' />
+            <InputEl formik={formik} placeholder='Name' type='text' id='NAME' />
             <InputEl
               formik={formik}
               placeholder='Email'
@@ -70,7 +72,7 @@ export default function Register() {
               formik={formik}
               placeholder='Password'
               type='password'
-              id='password'
+              id='PASSWORD'
             />
             <InputEl
               formik={formik}
@@ -90,7 +92,7 @@ export default function Register() {
           </button>
         </form>
         <p>
-          Registered? <Link to={'/user/login'}>login here</Link>
+          Registered? <Link to={'/auth/login'}>login here</Link>
         </p>
       </div>
     </div>

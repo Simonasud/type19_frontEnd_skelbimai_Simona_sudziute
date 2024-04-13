@@ -77,7 +77,7 @@ export default function AddAdsPage() {
 
   return (
     <div
-      className={`container adsContainer header ${
+      className={`container adsContainer  ${
         theme === 'dark' ? 'darkMode' : ''
       }`}
     >

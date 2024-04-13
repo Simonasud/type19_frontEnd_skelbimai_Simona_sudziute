@@ -37,7 +37,7 @@ export type ThemeSwitcherProps = {
 
 export type UserObjType = {
   id?: number;
-  name?: string;
+  NAME?: string;
   email: string;
-  password: string;
+  PASSWORD: string;
 }

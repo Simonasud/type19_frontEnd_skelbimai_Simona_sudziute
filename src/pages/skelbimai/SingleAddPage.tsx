@@ -5,6 +5,7 @@ import { AdsObjType } from '../../types/types';
 import { beBaseurl } from '../../config';
 import axios from 'axios';
 import { getNiceDate } from '../../utils/helper';
+import SinglePageSwiper from '../../components/UI/SinglePageSwiper';
 
 type AddParam = {
   adsId: string;
@@ -36,7 +37,7 @@ function SingleAddPage() {
   const navigate = useNavigate();
   async function handleDeleteAdd() {
     try {
-      const resp = await axios.delete(`${beBaseurl}/:adsId`);
+      const resp = await axios.delete(`${beBaseurl}/ads/${adsId}`);
       console.log('resp ===', resp);
       navigate('/ads');
     } catch (error) {
@@ -46,40 +47,42 @@ function SingleAddPage() {
   }
 
   return (
-    <div>
-      <div className='container'>
-        <div className='left'>
-          <p className=''>
-            Add listed on: {getNiceDate(currentAdd?.created_at || '')}
-          </p>
-          <p>Price: {currentAdd?.price}</p>
-          <p>{currentAdd?.TYPE}</p>
+    <div className='container singleAdd'>
+      <div className='singleAddContainer'>
+        <div className='top'>
+          <p className='adsType'>{currentAdd?.TYPE}</p>
+          <div className='singleAddTop'>
+            <h1 className='title'>{currentAdd?.title}</h1>
+            <p className='adsDate'>
+              <span className='adsDateSpan'>Listed on:</span>{' '}
+              {getNiceDate(currentAdd?.created_at || '')}
+            </p>
+          </div>
         </div>
+
         <div className='midle'>
-          <img
-            src={'/img/' + currentAdd?.main_image_url}
-            alt={currentAdd?.title}
+          <SinglePageSwiper
+            images={[
+              currentAdd?.main_image_url || '',
+              currentAdd?.image_1 || '',
+              currentAdd?.image_2 || '',
+              currentAdd?.image_3 || '',
+              currentAdd?.image_4 || '',
+              currentAdd?.image_5 || '',
+            ]}
           />
         </div>
-        <div className=''>
-          <img src={'/img/' + currentAdd?.image_1} alt={currentAdd?.title} />
-          <img src={'/img/' + currentAdd?.image_2} alt={currentAdd?.title} />
-          <img src={'/img/' + currentAdd?.image_3} alt={currentAdd?.title} />
-          <img src={'/img/' + currentAdd?.image_4} alt={currentAdd?.title} />
-          <img src={'/img/' + currentAdd?.image_5} alt={currentAdd?.title} />
-        </div>
-        <div className='right'>
-          <h1>{currentAdd?.title}</h1>
-          <p>{currentAdd?.description}</p>
+        <div className='bottom'>
+          <p className='singleAddDescr'>{currentAdd?.description}</p>
+          <p className='adsPrice'>Price starts: {currentAdd?.price}$</p>
+          <p className='adsPhone'>Phone: {currentAdd?.phone}</p>
 
-          <div className='bottom'>
-            <button className='btn'>
-              <i className='bi bi-arrow-left'></i> Go back
-            </button>
-            <button onClick={handleDeleteAdd} className='deleteBtn'>
-              Delete
-            </button>
-          </div>
+          <button className='btn'>
+            <i className='bi bi-arrow-left'></i> Go back
+          </button>
+          <button onClick={handleDeleteAdd} className='deleteBtn'>
+            Delete
+          </button>
         </div>
       </div>
     </div>

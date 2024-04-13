@@ -1,0 +1,93 @@
+.singleAdd {
+  background-color: $tertiary;
+}
+.singleAddContainer {
+  padding-top: 15px;
+  padding-bottom: 40px;
+}
+
+.singleAddTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4px;
+
+  & .title {
+    font-size: 14px;
+    color: $primary;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  & .adsDate {
+    color: $secondary;
+  }
+
+  & .adsDateSpan {
+    display: none;
+  }
+}
+
+.singleAddDescr {
+  text-align: justify;
+  padding-bottom: 8px;
+}
+
+.adsType {
+  text-transform: capitalize;
+  padding-bottom: 4px;
+}
+.adsPrice {
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.adsPhone {
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .singleAddContainer {
+    display: grid;
+    grid-template-columns: repeat(
+      4,
+      minmax(50%, auto)
+    ); /* Du stulpeliai vienoje eilutėje */
+    gap: 10px; /* Tarpas tarp stulpelių */
+  }
+  .adsType {
+    grid-column: 1;
+  }
+
+  .midle {
+    grid-column: 1; /* Šis elementas bus pirmame stulpelyje */
+  }
+
+  .right {
+    grid-column: 2; /* Šis elementas bus antrame stulpelyje */
+  }
+
+  .singleAddDescr {
+    padding-right: 10px;
+  }
+  .singleAddTop {
+    display: block;
+    & .title {
+      font-size: 20px;
+    }
+
+    & .adsDate {
+      color: $secondary;
+    }
+
+    & .adsDateSpan {
+      display: inline-block;
+    }
+  }
+
+  .adsType {
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}

@@ -1,11 +1,12 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { useAuthCtx } from '../../store/AuthProvieder';
 import { beBaseurl } from '../../config';
 import InputEl from '../UI/InputEl';
 import { useFormik } from 'formik';
 import { UserObjType } from '../../types/types';
+import { Link } from 'react-router-dom';
 
-type LoginObjType = Pick<UserObjType, 'email' | 'password'>;
+type LoginObjType = Pick<UserObjType, 'email' | 'PASSWORD'>;
 
 export default function Login() {
   const { login } = useAuthCtx();
@@ -13,7 +14,7 @@ export default function Login() {
   const formik = useFormik<LoginObjType>({
     initialValues: {
       email: '',
-      password: '',
+      PASSWORD: '',
     },
     onSubmit: (values) => {
       console.log(JSON.stringify(values, null, 2));
@@ -25,10 +26,10 @@ export default function Login() {
 
   function handleLogin(loginObj: LoginObjType) {
     axios
-      .post(`${beBaseurl}/user/login`, loginObj)
-      .then((res) => {
+      .post(`${beBaseurl}/auth/login`, loginObj)
+      .then((res: AxiosResponse<UserObjType>) => {
         console.log('res.data ===', res.data);
-        login(res.data.email);
+        login(res.data.email, res.data.id || 0);
       })
       .catch((error) => {
         console.log('error ===', error);
@@ -36,8 +37,8 @@ export default function Login() {
   }
 
   return (
-    <div>
-      <h2>Login here</h2>
+    <div className='container'>
+      <h2 className='title'>Login here</h2>
       <form noValidate onSubmit={formik.handleSubmit}>
         <InputEl
           formik={formik}
@@ -47,7 +48,7 @@ export default function Login() {
         />
         <InputEl
           formik={formik}
-          id={'password'}
+          id={'PASSWORD'}
           placeholder='Enter password'
           type='password'
         />
@@ -55,6 +56,9 @@ export default function Login() {
           Login
         </button>
       </form>
+      <p>
+        Do not have account? <Link to={'/auth/register'}>login here</Link>
+      </p>
     </div>
   );
 }

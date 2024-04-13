@@ -7,11 +7,13 @@ type NavItemProps = {
   to: string;
   children: string;
   subItem?: boolean;
+  onClick?: () => void;
 };
 
-export function NavItem({ to, children, subItem }: NavItemProps) {
+export function NavItem({ to, children, subItem, onClick }: NavItemProps) {
   return (
     <NavLink
+      onClick={onClick}
       className={`headerNavLink ${subItem ? 'smaller' : 'larger'} `}
       to={to}
     >
@@ -21,7 +23,7 @@ export function NavItem({ to, children, subItem }: NavItemProps) {
 }
 
 function Header() {
-  const { isUserLooggedIn } = useAuthCtx();
+  const { isUserLoggedIn, logout, email } = useAuthCtx();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [theme, setTheme] = useState('light');
@@ -54,6 +56,11 @@ function Header() {
                     New add
                   </NavItem>
                 </li>
+                <li className=''>
+                  <NavItem subItem to='/user/user-ads'>
+                    My Ads
+                  </NavItem>
+                </li>
               </ul>
             </li>
 
@@ -61,17 +68,25 @@ function Header() {
               <NavItem to='/user'>User</NavItem>
               </li> */}
             {isUserLoggedIn && (
-              <li>
-                <NavItem to='/user/login'>Logout</NavItem>
-              </li>
-            )}
-            {isUserLoggedIn && (
               <>
                 <li>
-                  <NavItem to='/user/register'>Register</NavItem>
+                  <NavItem onClick={logout} to='/auth/login'>
+                    Logout
+                  </NavItem>
                 </li>
                 <li>
-                  <NavItem to='/user/login'>Login</NavItem>
+                  <NavItem to='/user'>My account</NavItem>
+                </li>
+                <li>{email}</li>
+              </>
+            )}
+            {!isUserLoggedIn && (
+              <>
+                <li>
+                  <NavItem to='/auth/register'>Register</NavItem>
+                </li>
+                <li>
+                  <NavItem to='/auth/login'>Login</NavItem>
                 </li>
               </>
             )}
