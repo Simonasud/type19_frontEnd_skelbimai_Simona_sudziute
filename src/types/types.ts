@@ -18,16 +18,7 @@ export type AdsObjType = {
   is_published?: boolean;
 }
 
-export type AdsFormType = {
-  title: string,
-  description: string,
-  price: number,
-  phone: string,
-  type: string,
-  town: string,
-  category: string;
-}
-
+export type AdsObjTypeNoId = Omit<AdsObjType, 'id'>
 
 export type ThemeSwitcherProps = {
   onLightThemeClick: () => void;
@@ -40,6 +31,8 @@ export type UserObjType = {
   NAME?: string;
   email: string;
   PASSWORD: string;
+  created_at: string;
+  avatar_url?: string;
 }
 
 export type TownType = {

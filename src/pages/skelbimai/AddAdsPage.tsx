@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { AdsFormType } from '../../types/types';
+import { AdsObjTypeNoId } from '../../types/types';
 import InputEl from '../../components/UI/InputEl';
 import { useEffect, useState } from 'react';
 import MySelectDropdown from '../../components/UI/SelectEl';
@@ -7,8 +7,9 @@ import axios, { AxiosError } from 'axios';
 import { beBaseurl } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import { useAuthCtx } from '../../store/AuthProvieder';
 
-const initFormValues: AdsFormType = {
+const initFormValues: AdsObjTypeNoId = {
   title: '',
   description: '',
   price: 0,
@@ -19,6 +20,7 @@ const initFormValues: AdsFormType = {
 };
 
 export default function AddAdsPage() {
+  const { userId } = useAuthCtx;
   const [fillAdd, setFillAdd] = useState(false);
   const [theme, setTheme] = useState('light'); // Temos būsena
 
@@ -37,12 +39,14 @@ export default function AddAdsPage() {
     price: Yup.number().min(0).required(),
     phone: Yup.string().min(3).max(255).required(),
     type: Yup.string().required(),
-    town: Yup.string().required(),
-    category: Yup.string().required(),
+    user_id: Yup.number(),
+    town_id: Yup.number(),
+    category_id: Yup.number(),
+    main_image_url: Yup.string().min(3).required(),
   });
 
-  const formik = useFormik<AdsFormType>({
-    initialValues: { ...initFormValues },
+  const formik = useFormik<AdsObjTypeNoId>({
+    initialValues: { ...initFormValues, user_id: userId },
     validationSchema: AdsValidationSchema,
 
     onSubmit: (values) => {
@@ -53,7 +57,7 @@ export default function AddAdsPage() {
 
   const navigate = useNavigate();
 
-  function sendDataToBe(data: AdsFormType) {
+  function sendDataToBe(data: AdsObjTypeNoId) {
     axios
       .post(`${beBaseurl}/ads`, data)
       .then((resp) => {

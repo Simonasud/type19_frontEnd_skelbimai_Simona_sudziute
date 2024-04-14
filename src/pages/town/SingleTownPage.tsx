@@ -1,10 +1,43 @@
 //
 
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { TownType } from '../../types/types';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { townUrl } from '../../config';
+
 export default function SingleTownPage() {
+  const { townId } = useParams() as { townId: string };
+
+  console.log('townId ===', townId);
+
+  const [curentTown, setCurentTown] = useState<TownType | null>(null);
+  const currentTownUrl = `${townUrl}/${townId}`;
+
+  useEffect(() => {
+    axios;
+    getTownData(currentTownUrl);
+  }, [currentTownUrl]);
+
+  function getTownData(url: string) {
+    axios
+      .get(url)
+      .then((resp: AxiosResponse<TownType>) => {
+        console.log('resp.data ===', resp.data);
+        setCurentTown(resp.data);
+      })
+      .catch((error: AxiosError) => {
+        console.warn('ivyko klaida', error);
+        console.warn('ivyko klaida', error.response?.data);
+      });
+  }
   return (
     <div>
-      <h1>SingleTownPage</h1>
+      <h1>{curentTown?.name}</h1>
       <p>Welcome to SingleTownPage</p>
+      <p>{curentTown?.created_at}</p>
+      <p>{curentTown?.area}</p>
+      <p>{curentTown?.population}</p>
     </div>
   );
 }

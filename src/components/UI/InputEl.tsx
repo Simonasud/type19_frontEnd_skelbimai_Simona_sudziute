@@ -6,6 +6,7 @@ type InputElProps<T> = {
   readonly id: keyof T;
   formik: FormikProps<T>;
   children?: string;
+  disabled?: boolean;
 };
 
 export default function InputEl<T>({
@@ -14,6 +15,7 @@ export default function InputEl<T>({
   id,
   placeholder,
   children,
+  disabled,
 }: InputElProps<T>) {
   const Element = type === 'textarea' ? 'textarea' : 'input';
 
@@ -31,6 +33,7 @@ export default function InputEl<T>({
         id={id.toString()}
         placeholder={placeholder}
         className='formInput'
+        disabled={disabled}
       />
       {isError && (
         <span className='formError'>{formik.errors[id]?.toString()}</span>
