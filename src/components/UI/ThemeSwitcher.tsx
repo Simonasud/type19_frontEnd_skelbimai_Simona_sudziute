@@ -1,19 +1,24 @@
-import { ThemeSwitcherProps } from '../../types/types';
+// ThemeSwitcher.tsx
+import { useTheme } from '../../store/ThemeProvider';
 
-function ThemeSwitcher({
-  onLightThemeClick,
-  onDarkThemeClick,
-}: ThemeSwitcherProps) {
+const ThemeSwitcher = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  const handleThemeChange = () => {
+    toggleTheme();
+  };
+
   return (
-    <div className=''>
-      <button className='themeIcon' onClick={onLightThemeClick}>
-        <i className=' bi bi-brightness-high'></i>
-      </button>
-      <button className='themeIcon' onClick={onDarkThemeClick}>
-        <i className=' bi bi-moon-stars-fill'></i>
+    <div className={`theme-switcher ${theme}`}>
+      <button className='themeIcon' onClick={handleThemeChange}>
+        <i
+          className={`bi bi-${
+            theme === 'light' ? 'brightness-high' : 'moon-stars-fill'
+          }`}
+        ></i>
       </button>
     </div>
   );
-}
+};
 
 export default ThemeSwitcher;

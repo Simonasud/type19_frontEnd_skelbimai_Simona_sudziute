@@ -15,11 +15,6 @@ export function AdsFilters({ onFilterChange }: AdsFilterProps) {
   const [priceSelVal, setPriceSelVal] = useState('all');
 
   useEffect(() => {
-    console.log('pasikeite');
-    console.log('townSelVal ===', townSelVal);
-    console.log('categorySelVal ===', categorySelVal);
-    console.log('typeSelVal ===', typeSelVal);
-    console.log('priceSelVal ===', priceSelVal);
     let finalFilterString = `/filter?`;
     if (townSelVal !== 'all') finalFilterString += `town=${townSelVal}`;
     if (categorySelVal !== 'all')
@@ -28,16 +23,14 @@ export function AdsFilters({ onFilterChange }: AdsFilterProps) {
     if (priceSelVal !== 'all') finalFilterString += `&price=${priceSelVal}`;
     console.log('finalFilterString ===', finalFilterString);
     onFilterChange(finalFilterString);
-  }, [townSelVal, categorySelVal, typeSelVal, priceSelVal]);
-
-  console.log('townSelVal ===', townSelVal);
+  }, [townSelVal]);
 
   const [townsArr, setTownsArr] = useState<{ town: string }[]>([]);
   const [categoriesArr, setCategoriesArr] = useState<{ category: string }[]>(
     []
   );
   const [typesArr, setTypesArr] = useState<{ type: string }[]>([]);
-  const [priceArr, setPriceArr] = useState<{ price: string }[]>([]);
+  const [priceArr, setPriceArr] = useState<{ price: number }[]>([]);
 
   useEffect(() => {
     getTown();

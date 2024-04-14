@@ -2,6 +2,7 @@
   background-color: $tertiary;
   color: $primary;
 }
+
 .adsContainer {
   padding-top: 20px;
   @include pageTitleStyle;
@@ -21,44 +22,39 @@
   padding: 20px;
 }
 
+.adsCardByUser {
+  background-color: #d59d9d;
+}
+
 .adsCard h2 {
   font-size: 20px;
 }
 
-.adsCard  {
+.adsCard {
   margin-top: 10px;
   font-size: 16px;
   color: $primary;
 }
 
 .adsPrice {
-  
   font-size: 14px;
 }
 
-.deleteBtn  {
+.deleteBtn {
   @include delete;
 }
 
 .adsAlert {
-  background-color: #e2e3e5; 
+  background-color: #e2e3e5;
   color: #6c757d;
   @include alertStyles;
 }
 
 .adsError {
-  background-color: #f8d7da; 
+  background-color: #f8d7da;
   color: #721c24;
   @include alertStyles;
 }
 .btn {
   @include btn;
 }
-
-
-
-
-
-
-
-

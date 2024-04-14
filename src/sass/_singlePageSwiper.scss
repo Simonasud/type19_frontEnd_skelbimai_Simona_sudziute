@@ -7,8 +7,6 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,14 +37,14 @@
 }
 
 .mySwiper {
-  height: 20%;
+  height: 30%;
   box-sizing: border-box;
   padding: 10px 0;
 }
 
 .mySwiper .swiper-slide {
   width: 25%;
-  height: 150px;
+  height: 100px;
   opacity: 0.4;
 }
 
@@ -67,4 +65,8 @@
 }
 
 @media screen and (min-width: 768px) {
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 18px;
+  }
 }

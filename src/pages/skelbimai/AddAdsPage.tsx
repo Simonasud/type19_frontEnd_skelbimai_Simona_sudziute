@@ -13,7 +13,7 @@ const initFormValues: AdsFormType = {
   description: '',
   price: 0,
   phone: '',
-  TYPE: '',
+  type: '',
   town: '',
   category: '',
 };
@@ -36,7 +36,7 @@ export default function AddAdsPage() {
     description: Yup.string().min(3).max(255).required(),
     price: Yup.number().min(0).required(),
     phone: Yup.string().min(3).max(255).required(),
-    TYPE: Yup.string().required(),
+    type: Yup.string().required(),
     town: Yup.string().required(),
     category: Yup.string().required(),
   });

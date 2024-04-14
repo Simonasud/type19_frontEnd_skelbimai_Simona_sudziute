@@ -8,7 +8,9 @@ import AddCard from '../../components/ads/AddCard';
 import { AdsFilters } from '../../components/ads/AdsFilters';
 
 function AdsPage() {
-  const [adsArr, setAdsArr] = useState<AdsObjType[] | null>(null);
+  const [adsArr, setAdsArr] = useState<
+    (AdsObjType & { email: string })[] | null
+  >(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState<string>('');
   console.log('adsArr ===', adsArr);
@@ -51,7 +53,7 @@ function AdsPage() {
         {isLoading && <p className='adsAlert'>Loading...</p>}
         {isError && <p className='adsError'>{isError}</p>}
         <div className='container'>
-          {/* <AdsFilters onFilterChange={setFilterVal} /> */}
+          <AdsFilters onFilterChange={setFilterVal} />
           <ul className='adsUl'>
             {adsArr?.map((aObj) => (
               <li key={aObj.id}>

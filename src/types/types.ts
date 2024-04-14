@@ -2,20 +2,20 @@ export type AdsObjType = {
   id: number;
   title: string;
   main_image_url: string;
-  image_1?: string;
-  image_2?: string;
-  image_3?: string;
-  image_4?: string;
-  image_5?: string;
+  image_1?: string 
+  image_2?: string 
+  image_3?: string 
+  image_4?: string 
+  image_5?: string 
   description: string;
   price: number;
   phone: string;
-  TYPE: string;
-  town_id: number;
-  user_id: number;
-  category_id: number;
-  created_at: string;
-  is_published: boolean;
+  type: string;
+  town_id: number 
+  user_id: number 
+  category_id: number 
+  created_at: string 
+  is_published?: boolean;
 }
 
 export type AdsFormType = {
@@ -23,7 +23,7 @@ export type AdsFormType = {
   description: string,
   price: number,
   phone: string,
-  TYPE: string,
+  type: string,
   town: string,
   category: string;
 }
@@ -40,4 +40,12 @@ export type UserObjType = {
   NAME?: string;
   email: string;
   PASSWORD: string;
+}
+
+export type TownType = {
+  id: number;
+  name: string;
+  population: number;
+  area: number;
+  created_at: string;
 }

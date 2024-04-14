@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import ThemeSwitcher from '../UI/ThemeSwitcher';
 import { useAuthCtx } from '../../store/AuthProvieder';
+import ThemeSwitcher from '../UI/ThemeSwitcher';
+import { useTheme } from '../../store/ThemeProvider';
 
 type NavItemProps = {
   to: string;
@@ -25,21 +26,10 @@ export function NavItem({ to, children, subItem, onClick }: NavItemProps) {
 function Header() {
   const { isUserLoggedIn, logout, email } = useAuthCtx();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const [theme, setTheme] = useState('light');
-
-  const handleLightThemeClick = () => {
-    setTheme('light');
-    document.body.classList.remove('darkMode');
-  };
-
-  const handleDarkThemeClick = () => {
-    setTheme('dark');
-    document.body.classList.add('darkMode');
-  };
+  const { theme } = useTheme();
 
   return (
-    <header className={`header ${theme === 'dark' ? 'darkMode' : ''}`}>
+    <header className={`header  ${theme === 'dark' ? 'darkMode' : ''}`}>
       <div className='container headerContainer'>
         <Link to={'/'}>
           <h2 className='headerLogo'>
@@ -64,9 +54,6 @@ function Header() {
               </ul>
             </li>
 
-            {/* <li className='headerLi'>
-              <NavItem to='/user'>User</NavItem>
-              </li> */}
             {isUserLoggedIn && (
               <>
                 <li>
@@ -103,11 +90,7 @@ function Header() {
           >
             <i className={`bi bi-${isMenuOpen ? 'x-lg' : 'list'}`}></i>
           </button>
-          <ThemeSwitcher
-            onLightThemeClick={handleLightThemeClick}
-            onDarkThemeClick={handleDarkThemeClick}
-            theme={theme}
-          />
+          <ThemeSwitcher /> {/* Įtraukiame ThemeSwitcher komponentą */}
         </div>
       </div>
     </header>

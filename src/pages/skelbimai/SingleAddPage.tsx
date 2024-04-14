@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AdsObjType } from '../../types/types';
 import { beBaseurl } from '../../config';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { getNiceDate } from '../../utils/helper';
 import SinglePageSwiper from '../../components/UI/SinglePageSwiper';
+import { useTheme } from '../../store/ThemeProvider';
+import { useAuthCtx } from '../../store/AuthProvieder';
 
 type AddParam = {
   adsId: string;
@@ -14,7 +16,15 @@ type AddParam = {
 function SingleAddPage() {
   const { adsId }: AddParam = useParams() as AddParam;
 
-  const [currentAdd, setCurrentAdd] = useState<AdsObjType | null>(null);
+  const { email, userId } = useAuthCtx();
+
+  const [currentAdd, setCurrentAdd] = useState<
+    (AdsObjType & { email: string }) | null
+  >(null);
+  console.log('currentAdd ===', currentAdd);
+  // const isOwner = email === currentAdd?.email;
+  const isOwner = true;
+
   // parsisiusti Add objekta
 
   const cUrl = `${beBaseurl}/ads/${adsId}`;
@@ -37,22 +47,32 @@ function SingleAddPage() {
   const navigate = useNavigate();
   async function handleDeleteAdd() {
     try {
-      const resp = await axios.delete(`${beBaseurl}/ads/${adsId}`);
+      const resp = await axios.delete(`${beBaseurl}/ads/${adsId}`, {
+        data: { userId },
+      });
       console.log('resp ===', resp);
       navigate('/ads');
     } catch (error) {
-      console.warn('error ===', error);
+      const axiosErr = error as AxiosError;
+      axiosErr.response?.data;
+      console.log('axiosErr.response?.data ===', axiosErr.response?.data);
       console.warn('klaida traukiant');
     }
   }
 
+  const { theme } = useTheme();
+
   return (
-    <div className='container singleAdd'>
+    <div
+      className={`container  singleAdd ${
+        theme === 'dark' ? 'darkMode' : 'lightMode'
+      }`}
+    >
       <div className='singleAddContainer'>
         <div className='top'>
-          <p className='adsType'>{currentAdd?.TYPE}</p>
+          <p className='adsType'>{currentAdd?.type}</p>
           <div className='singleAddTop'>
-            <h1 className='title'>{currentAdd?.title}</h1>
+            <h1 className='singleTitle'>{currentAdd?.title}</h1>
             <p className='adsDate'>
               <span className='adsDateSpan'>Listed on:</span>{' '}
               {getNiceDate(currentAdd?.created_at || '')}
@@ -80,9 +100,11 @@ function SingleAddPage() {
           <button className='btn'>
             <i className='bi bi-arrow-left'></i> Go back
           </button>
-          <button onClick={handleDeleteAdd} className='deleteBtn'>
-            Delete
-          </button>
+          {isOwner && (
+            <button onClick={handleDeleteAdd} className='deleteBtn'>
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -1,0 +1,40 @@
+.townPageContainer {
+  background-color: $tertiary;
+  @include pageTitleStyle;
+}
+
+.cardContainerTown {
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.townCard {
+  background-color: $primary;
+  color: $tertiary;
+  border-radius: 8px;
+  width: 70%;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.townCard:hover {
+  background-color: $darkerPrimary;
+}
+
+.townText {
+  font-size: 14px;
+  margin: 0;
+}
+
+.title {
+  color: $secondary;
+}
+
+.text {
+  color: $tertiary;
+}
