@@ -1,0 +1,66 @@
+.adsContainer {
+  background-color: $tertiary;
+}
+
+.title {
+  @include mainTitle;
+}
+
+.adsForm {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $primary;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+}
+
+.formLabel {
+  padding-left: 10px;
+}
+
+.labelTitle {
+  text-decoration: underline;
+}
+
+.formInput {
+  border: 1px solid transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 100%;
+  font-style: italic;
+  color: $primary;
+  background-color: transparent;
+  margin-bottom: 10px;
+}
+
+.formInput:focus {
+  outline: none;
+}
+
+.Dropdown-control {
+  border: 1px solid $primary;
+  border-radius: 10px;
+  padding: 5px 0 5px 10px;
+  margin-bottom: 10px;
+  background-color: transparent;
+  color: $primary;
+}
+
+.Dropdown-option.is-selected {
+  background-color: transparent;
+  color: $primary;
+  font-style: italic;
+}
+
+.formError {
+  background-color: rgb(245, 200, 200);
+  display: block;
+  color: rgb(236, 69, 69);
+  border: 1 px solid rgb(236, 69, 69);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+  margin-bottom: 6px;
+}

@@ -1,0 +1,140 @@
+.header {
+  background-color: $tertiary;
+  color: $primary;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.headerLogo {
+  font-weight: lighter;
+  font-size: 18px;
+}
+
+.headerSpan {
+  color: $secondary;
+  font-style: italic;
+  font-size: larger;
+  font-weight: bold;
+  border: 1px solid $primary;
+  border-radius: 0px 20px;
+  padding: 5px;
+  margin: 2px;
+}
+
+.headerUl {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.headerNavLink {
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.headerNavLink.smaller {
+  font-size: 16px;
+}
+
+.headerNavLink:hover {
+  color: $secondary;
+}
+
+.burgerBtn,
+.x-lg {
+  border: transparent !important;
+  background-color: transparent !important;
+  color: $primary;
+  font-size: 24px;
+}
+
+.close {
+  display: none;
+}
+
+.mobileMenu {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: $primary;
+  right: 0;
+  top: 54px;
+  bottom: 0;
+  text-align: left;
+  min-width: 200px;
+}
+
+.burgerMenu {
+  display: flex;
+  align-items: center;
+}
+
+.subMenu {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  z-index: 0;
+}
+.headerLiEmail {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .burgerBtn {
+    display: none;
+  }
+
+  .close {
+    display: block;
+  }
+
+  .headerNav {
+    display: block !important;
+  }
+
+  .headerUl {
+    flex-direction: row;
+  }
+
+  .headerLi {
+    position: relative;
+    z-index: 1;
+  }
+
+  .headerLi:hover .subMenu {
+    transform: translateY(0);
+    z-index: 1;
+  }
+
+  .subMenu {
+    border: 1px solid transparent;
+    border-radius: 0 0 10px 10px;
+    padding: 15px;
+    position: absolute;
+    // top: calc(100%);
+    // bottom: 0;
+    top: auto;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    min-width: 80px;
+    transform: translateY(-200%);
+    overflow: hidden;
+    z-index: -1;
+    transition: transform 0.2s ease-in-out;
+    box-sizing: content-box;
+  }
+  .headerLiEmail {
+    display: inline-block;
+    color: $secondary;
+    font-size: 14px;
+  }
+}

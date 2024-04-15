@@ -1,0 +1,63 @@
+.adsPage {
+  background-color: $tertiary;
+  color: $primary;
+}
+
+.title {
+  @include mainTitle;
+}
+
+.adsContainer {
+  padding-top: 20px;
+}
+
+.adsUl {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding-left: 0;
+}
+
+.adsCard {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.adsCardByUser {
+  background-color: #d59d9d;
+}
+
+.adsCard h2 {
+  font-size: 20px;
+}
+
+.adsCard {
+  margin-top: 10px;
+  font-size: 16px;
+  color: $primary;
+}
+
+.adsPrice {
+  font-size: 14px;
+}
+
+.deleteBtn {
+  @include delete;
+}
+
+.adsAlert {
+  background-color: #e2e3e5;
+  color: #6c757d;
+  @include alertStyles;
+}
+
+.adsError {
+  background-color: #f8d7da;
+  color: #721c24;
+  @include alertStyles;
+}
+.btn {
+  @include btn;
+}
