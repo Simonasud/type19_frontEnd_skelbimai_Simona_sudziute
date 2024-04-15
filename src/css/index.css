@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -42,20 +43,21 @@ ul {
   padding-right: 15px;
 }
 
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
 .header {
   background-color: #ffffff;
   color: #3f3f3f;
   padding-top: 15px;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   padding-right: 10px;
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-.darkMode .header {
-  background-color: #3f3f3f;
-  color: #ffffff;
 }
 
 .headerContainer {
@@ -86,10 +88,6 @@ ul {
   margin: 2px;
 }
 
-.darkMode .headerSpan {
-  border: 1px solid #ffffff;
-}
-
 .headerUl {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -103,6 +101,7 @@ ul {
 
 .headerNavLink {
   font-size: 20px;
+  padding-bottom: 10px;
 }
 
 .headerNavLink.smaller {
@@ -113,15 +112,12 @@ ul {
   color: #ff6168;
 }
 
-.burgerBtn, .x-lg {
+.burgerBtn,
+.x-lg {
   border: transparent !important;
   background-color: transparent !important;
   color: #3f3f3f;
   font-size: 24px;
-}
-
-.darkMode .burgerBtn, .x-lg {
-  color: #ffffff;
 }
 
 .close {
@@ -139,11 +135,6 @@ ul {
   min-width: 200px;
 }
 
-.darkMode .mobileMenu {
-  background-color: rgba(63, 63, 63, 0.9);
-  color: #ffffff;
-}
-
 .burgerMenu {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -158,6 +149,10 @@ ul {
   padding-right: 10px;
   padding-top: 10px;
   z-index: 0;
+}
+
+.headerLiEmail {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -190,7 +185,7 @@ ul {
     border-radius: 0 0 10px 10px;
     padding: 15px;
     position: absolute;
-    top: 100%;
+    top: auto;
     left: 0;
     background-color: rgba(255, 255, 255, 0.5);
     min-width: 80px;
@@ -205,9 +200,10 @@ ul {
     -webkit-box-sizing: content-box;
             box-sizing: content-box;
   }
-  .darkMode .subMenu {
-    border: 1px solid transparent;
-    background-color: rgba(63, 63, 63, 0.5);
+  .headerLiEmail {
+    display: inline-block;
+    color: #ff6168;
+    font-size: 14px;
   }
 }
 .adsPage {
@@ -215,32 +211,13 @@ ul {
   color: #3f3f3f;
 }
 
-.adsContainer {
-  padding-top: 20px;
-}
-.adsContainer .title {
+.title {
+  color: #3f3f3f;
   font-size: 40px;
 }
-.adsContainer .text {
-  color: #3f3f3f;
-  font-size: 12px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  padding-bottom: 40px;
-  padding-top: 10px;
-}
-.adsContainer .additionalText {
-  color: #3f3f3f;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  padding-bottom: 20px;
-}
-.adsContainer .darkMode .title {
-  color: #d5d1d1;
-}
-.adsContainer .darkMode .text {
-  color: #ffffff;
-}
-.adsContainer .darkMode .additionalText {
-  color: #ffffff;
+
+.adsContainer {
+  padding-top: 20px;
 }
 
 .adsUl {
@@ -256,6 +233,10 @@ ul {
   -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
+}
+
+.adsCardByUser {
+  background-color: #d59d9d;
 }
 
 .adsCard h2 {
@@ -301,17 +282,18 @@ ul {
 .btn {
   border: 1px solid transparent;
   background-color: transparent;
-  padding-left: 0;
   color: #0066cc;
-  padding: 4px 7px 4px 7px;
+  padding: 4px 7px 4px 0px;
+  margin-right: 10px;
 }
 
 .adsContainer {
   background-color: #ffffff;
 }
 
-.darkMode .adsContainer {
-  background-color: #2e2e2e;
+.title {
+  color: #3f3f3f;
+  font-size: 40px;
 }
 
 .adsForm {
@@ -327,10 +309,6 @@ ul {
   padding: 10px;
   margin-bottom: 40px;
   margin-top: 10px;
-}
-
-.darkMode .adsForm {
-  border: 1px solid #ffffff;
 }
 
 .formLabel {
@@ -356,10 +334,6 @@ ul {
   outline: none;
 }
 
-.darkMode .formInput {
-  color: #d5d1d1;
-}
-
 .Dropdown-control {
   border: 1px solid #3f3f3f;
   border-radius: 10px;
@@ -369,24 +343,10 @@ ul {
   color: #3f3f3f;
 }
 
-.darkMode .Dropdown-control {
-  border: 1px solid #ffffff;
-  color: #d5d1d1;
-}
-
 .Dropdown-option.is-selected {
   background-color: transparent;
   color: #3f3f3f;
   font-style: italic;
-}
-
-.darkMode .Dropdown-option {
-  background-color: #3f3f3f;
-  color: #d5d1d1;
-}
-
-.darkMode .btn {
-  color: #a3c7ed;
 }
 
 .formError {
@@ -417,4 +377,242 @@ ul {
 
 .darkMode .themeIcon .bi-brightness-high {
   color: #ffffff;
+}
+
+.singleAdd {
+  background-color: #ffffff;
+}
+
+.singleAddContainer {
+  padding-top: 15px;
+  padding-bottom: 40px;
+}
+
+.singleAddTop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 4px;
+}
+
+.singleTitle {
+  font-size: 14px;
+  color: #3f3f3f;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.adsDate {
+  color: #ff6168;
+}
+
+.adsDateSpan {
+  display: none;
+}
+
+.adsPrice,
+.adsPhone {
+  font-size: 14px;
+  padding-bottom: 4px;
+  color: #3f3f3f;
+}
+
+.singleAddDescr {
+  text-align: justify;
+  padding-bottom: 8px;
+  color: #3f3f3f;
+}
+
+.adsType {
+  text-transform: capitalize;
+  padding-bottom: 4px;
+  color: #3f3f3f;
+}
+
+@media screen and (min-width: 768px) {
+  .singleAddContainer {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(50%, auto)); /* Du stulpeliai vienoje eilutėje */
+    gap: 10px; /* Tarpas tarp stulpelių */
+  }
+  .adsType {
+    grid-column: 1;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  .adsPrice {
+    padding-top: 20px;
+  }
+  .adsPhone {
+    padding-bottom: 20px;
+  }
+  .midle {
+    grid-column: 1; /* Šis elementas bus pirmame stulpelyje */
+  }
+  .right {
+    grid-column: 2; /* Šis elementas bus antrame stulpelyje */
+  }
+  .singleAddDescr {
+    padding-right: 10px;
+  }
+  .singleAddTop {
+    display: block;
+  }
+  .singleAddTop .title {
+    font-size: 20px;
+  }
+  .singleAddTop .adsDate {
+    color: #ff6168;
+  }
+  .singleAddTop .adsDateSpan {
+    display: inline-block;
+  }
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.mySwiper2 {
+  height: 80%;
+  width: 100%;
+}
+
+.mySwiper {
+  height: 30%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.mySwiper .swiper-slide {
+  width: 25%;
+  height: 100px;
+  opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-size: 18px;
+  }
+}
+.townPageContainer {
+  background-color: #ffffff;
+}
+
+.cardContainerTown {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+  padding: 0;
+}
+
+.title {
+  color: #3f3f3f;
+  font-size: 40px;
+}
+
+.text {
+  color: #3f3f3f;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding-bottom: 20px;
+}
+
+.townCard {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 200px;
+          flex: 1 0 200px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+  -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.townCard:hover {
+  background-color: #e0e0e0;
+}
+
+.townTitle {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.townText {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 3px;
+}
+
+.updateContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }/*# sourceMappingURL=index.css.map */
