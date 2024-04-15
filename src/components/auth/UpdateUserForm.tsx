@@ -83,7 +83,7 @@ export default function UpdateUserForm({
   }
   return (
     <div>
-      <div className='container'>
+      <div className='container updateContainer'>
         <h2 className='title'>Update User Form</h2>
 
         <form onSubmit={formik.handleSubmit}>

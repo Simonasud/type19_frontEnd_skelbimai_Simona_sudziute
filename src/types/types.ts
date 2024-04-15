@@ -14,7 +14,7 @@ export type AdsObjType = {
   town_id: number 
   user_id: number 
   category_id: number 
-  created_at: string 
+  created_at?: string 
   is_published?: boolean;
 }
 

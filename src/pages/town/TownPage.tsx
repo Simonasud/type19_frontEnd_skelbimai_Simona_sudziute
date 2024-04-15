@@ -34,8 +34,8 @@ export default function TownPage() {
             <Link to={`/town/${tObj.id}`}>
               <h4 className='townTitle'>{tObj.name}</h4>
               <p className='townText'>{tObj.created_at}</p>
-              <p className='townText'>{tObj.area}</p>
-              <p className='townText'>{tObj.population}</p>
+              <p className='townText'>Area: {tObj.area}km²</p>
+              <p className='townText'>Population: {tObj.population}</p>
             </Link>
           </li>
         ))}

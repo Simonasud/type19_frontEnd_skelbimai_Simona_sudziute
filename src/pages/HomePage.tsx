@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { AdsObjType } from '../types/types';
 import { beBaseurl } from '../config';
-import { AdsFilters } from '../components/ads/AdsFilters';
+// import { AdsFilters } from '../components/ads/AdsFilters';
 import AddsList from '../components/ads/AddsList';
 
 function HomePage() {
@@ -42,16 +42,12 @@ function HomePage() {
       break;
   }
 
-  const [filterVal, setFilterVal] = useState('');
+  // const [filterVal, setFilterVal] = useState('');
 
   //filter?price=300
   useEffect(() => {
-    if (filterVal) {
-      getPosts(`${beBaseurl}/ads/${filterVal}`);
-    } else {
-      getPosts(`${beBaseurl}/ads`);
-    }
-  }, [filterVal]);
+    getPosts(`${beBaseurl}/ads`);
+  }, []);
 
   function getPosts(url: string) {
     setIsLoading(true);
@@ -79,16 +75,7 @@ function HomePage() {
         <p className='text'>Welcome to Adds Page</p>
         {isLoading && <p className='adsAlert'>Loading...</p>}
         {isError && <p className='adsError'>{isError}</p>}
-        <div className='container'>
-          <AdsFilters onFilterChange={setFilterVal} />
-          {/* <ul className='adsUl'>
-            {adsArr?.map((aObj) => (
-              <li key={aObj.id}>
-                <AddCard item={aObj} />
-              </li>
-            ))}
-          </ul> */}
-        </div>
+        <div className='container'></div>
         <div>
           <p>active sort: {sortOptVal}</p>
           <select
@@ -105,16 +92,6 @@ function HomePage() {
             <option value={'type'}>By type</option>
           </select>
           <AddsList list={sortedArr} />
-        </div>
-        <div className='container'>
-          <AdsFilters onFilterChange={setFilterVal} />
-          {/* <ul className='adsUl'>
-            {adsArr?.map((aObj) => (
-              <li key={aObj.id}>
-                <AddCard item={aObj} />
-              </li>
-            ))}
-          </ul> */}
         </div>
       </div>
     </div>

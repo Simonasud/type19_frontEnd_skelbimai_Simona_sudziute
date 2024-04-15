@@ -2,7 +2,6 @@ import { useFormik } from 'formik';
 import { AdsObjTypeNoId } from '../../types/types';
 import InputEl from '../../components/UI/InputEl';
 import { useEffect, useState } from 'react';
-import MySelectDropdown from '../../components/UI/SelectEl';
 import axios, { AxiosError } from 'axios';
 import { beBaseurl } from '../../config';
 import { useNavigate } from 'react-router-dom';
@@ -15,25 +14,21 @@ const initFormValues: AdsObjTypeNoId = {
   price: 0,
   phone: '',
   type: '',
-  town: '',
-  category: '',
+  user_id: 0,
+  category_id: 0,
+  town_id: 0,
+  main_image_url: '',
 };
 
 export default function AddAdsPage() {
   const { userId } = useAuthCtx;
   const [fillAdd, setFillAdd] = useState(false);
-  const [theme, setTheme] = useState('light'); // Temos būsena
 
   useEffect(() => {
-    const isDarkModeEnabled = /* Jūsų sąlyga */ false; // Čia nustatote, ar tamsusis režimas įjungtas
-    if (isDarkModeEnabled) {
-      setTheme('dark'); // Jei tamsusis režimas įjungtas, nustatykite temą kaip tamsiąją
-    } else {
-      setTheme('light'); // Kitu atveju, nustatykite temą kaip šviesiąją
-    }
+    //
   }, []);
 
-  const AdsValidationSchema = Yup.object({
+  const adsValidationsSchema = Yup.object({
     title: Yup.string().min(3).max(255).required(),
     description: Yup.string().min(3).max(255).required(),
     price: Yup.number().min(0).required(),
@@ -47,7 +42,7 @@ export default function AddAdsPage() {
 
   const formik = useFormik<AdsObjTypeNoId>({
     initialValues: { ...initFormValues, user_id: userId },
-    validationSchema: AdsValidationSchema,
+    validationSchema: adsValidationsSchema,
 
     onSubmit: (values) => {
       console.log('values ===', JSON.stringify(values, null, 2));
@@ -80,11 +75,7 @@ export default function AddAdsPage() {
   }
 
   return (
-    <div
-      className={`container adsContainer  ${
-        theme === 'dark' ? 'darkMode' : ''
-      }`}
-    >
+    <div className='container adsContainer'>
       <div className=''>
         <h1 className='title'>Create New Listing Page</h1>
         <p className='text'>
@@ -128,45 +119,30 @@ export default function AddAdsPage() {
             id='phone'
             placeholder='Provide contact number'
           />
-          <MySelectDropdown
-            placeholder='-- type --'
-            TYPE={formik.values.TYPE} // Pakeičiama 'value' į 'TYPE'
-            onChange={
-              (selected) => formik.setFieldValue('TYPE', selected.value) // Pakeičiama 'type' į 'TYPE'
-            }
-            options={[
-              { value: 'option1', label: 'buy' },
-              { value: 'option2', label: 'sell' },
-              { value: 'option3', label: 'rent' },
-            ]}
-            errorMessage={formik.errors.TYPE} // Pakeičiama 'errorMessage' į 'formik.errors.TYPE'
+
+          <InputEl
+            children='Type'
+            formik={formik}
+            type='text'
+            id='type'
+            placeholder='Select type'
+          />
+          <option value='Type'></option>
+
+          <InputEl
+            children='Category'
+            formik={formik}
+            type='text'
+            id='category_id'
+            placeholder='Category'
           />
 
-          <MySelectDropdown
-            placeholder='-- town --'
-            town={formik.values.town} // Pakeičiama 'value' į 'town'
-            onChange={(selected) =>
-              formik.setFieldValue('town', selected.value)
-            }
-            options={[
-              { value: 'option1', label: 'Vilnius' },
-              { value: 'option2', label: 'Kaunas' },
-              { value: 'option3', label: 'Klaipeda' },
-            ]}
-            errorMessage={formik.errors.town} // Pakeičiama 'errorMessage' į 'formik.errors.town'
-          />
-          <MySelectDropdown
-            placeholder='-- category --'
-            category={formik.values.category} // Pakeičiama 'value' į 'category'
-            onChange={(selected) =>
-              formik.setFieldValue('category', selected.value)
-            }
-            options={[
-              { value: 'option1', label: 'Nekilnojamas turtas' },
-              { value: 'option2', label: 'Automobiliai' },
-              { value: 'option3', label: 'Drabužiai' },
-            ]}
-            errorMessage={formik.errors.category} // Pakeičiama 'errorMessage' į 'formik.errors.category'
+          <InputEl
+            children='Town'
+            formik={formik}
+            type='text'
+            id='town_id'
+            placeholder='Town'
           />
 
           <button type='submit' className='btn'>

@@ -2,10 +2,6 @@
   background-color: $tertiary;
 }
 
-.darkMode .adsContainer {
-  background-color: $darkerPrimary;
-}
-
 .title {
   @include mainTitle;
 }

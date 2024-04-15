@@ -25,19 +25,18 @@
   font-size: 40px;
 }
 
-@mixin pageTitleStyle {
-  .text {
-    color: $primary;
-    font-size: 12px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-      'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding-bottom: 40px;
-    padding-top: 10px;
-  }
-  .additionalText {
-    color: $primary;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-      'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    padding-bottom: 20px;
-  }
+@mixin mainText {
+  color: $primary;
+  font-size: 12px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-bottom: 40px;
+  padding-top: 10px;
+}
+
+@mixin subText {
+  color: $primary;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding-bottom: 20px;
 }
