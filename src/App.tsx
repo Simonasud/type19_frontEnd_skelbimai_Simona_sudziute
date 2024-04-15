@@ -10,9 +10,10 @@ import Login from './components/auth/Login.tsx';
 import Register from './components/auth/Register.tsx';
 import { useAuthCtx } from './store/AuthProvieder.tsx';
 import UserAds from './pages/UserAds.tsx';
-import SingleTownPage from './pages/town/SingleTownPage.tsx';
+
 import HomePage from './pages/HomePage.tsx';
 import AdsPage from './pages/skelbimai/AdsPage.tsx';
+import SingleTownPage from './pages/town/SingleTownPage.tsx';
 
 function App() {
   const { isUserLoggedIn } = useAuthCtx();

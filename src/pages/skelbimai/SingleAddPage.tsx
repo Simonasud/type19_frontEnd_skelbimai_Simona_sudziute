@@ -1,6 +1,6 @@
 //
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { AdsObjType } from '../../types/types';
 import { beBaseurl } from '../../config';
 import axios, { AxiosError } from 'axios';
@@ -91,7 +91,9 @@ function SingleAddPage() {
           <p className='adsPhone'>Phone: {currentAdd?.phone}</p>
 
           <button className='btn'>
-            <i className='bi bi-arrow-left'></i> Go back
+            <Link to={'/ads'}>
+              <i className='bi bi-arrow-left'></i> Go back
+            </Link>
           </button>
           {isOwner && (
             <button onClick={handleDeleteAdd} className='deleteBtn'>
