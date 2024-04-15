@@ -6,7 +6,6 @@ import { beBaseurl } from '../../config';
 import axios, { AxiosError } from 'axios';
 import { getNiceDate } from '../../utils/helper';
 import SinglePageSwiper from '../../components/UI/SinglePageSwiper';
-import { useTheme } from '../../store/ThemeProvider';
 import { useAuthCtx } from '../../store/AuthProvieder';
 
 type AddParam = {
@@ -60,14 +59,8 @@ function SingleAddPage() {
     }
   }
 
-  const { theme } = useTheme();
-
   return (
-    <div
-      className={`container  singleAdd ${
-        theme === 'dark' ? 'darkMode' : 'lightMode'
-      }`}
-    >
+    <div className='container  singleAdd'>
       <div className='singleAddContainer'>
         <div className='top'>
           <p className='adsType'>{currentAdd?.type}</p>

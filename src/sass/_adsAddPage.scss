@@ -1,23 +1,23 @@
-.adsContainer{
+.adsContainer {
   background-color: $tertiary;
 }
 
 .darkMode .adsContainer {
-background-color: $darkerPrimary;
+  background-color: $darkerPrimary;
+}
+
+.title {
+  @include mainTitle;
 }
 
 .adsForm {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   border: 1px solid $primary;
   border-radius: 10px;
   padding: 10px;
   margin-bottom: 40px;
   margin-top: 10px;
-}
-
-.darkMode .adsForm {
-  border: 1px solid $tertiary;
 }
 
 .formLabel {
@@ -28,7 +28,7 @@ background-color: $darkerPrimary;
   text-decoration: underline;
 }
 
- .formInput {
+.formInput {
   border: 1px solid transparent;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -37,34 +37,20 @@ background-color: $darkerPrimary;
   color: $primary;
   background-color: transparent;
   margin-bottom: 10px;
-  
- }
+}
 
- .formInput:focus {
+.formInput:focus {
   outline: none;
 }
 
-.darkMode .formInput {
-  color: $darkerTertiary;
-}
-
-
- .Dropdown-control {
+.Dropdown-control {
   border: 1px solid $primary;
   border-radius: 10px;
   padding: 5px 0 5px 10px;
   margin-bottom: 10px;
   background-color: transparent;
   color: $primary;
- }
-
-
- .darkMode .Dropdown-control {
-  border: 1px solid $tertiary;
-  color: $darkerTertiary;
- }
-
-
+}
 
 .Dropdown-option.is-selected {
   background-color: transparent;
@@ -72,16 +58,7 @@ background-color: $darkerPrimary;
   font-style: italic;
 }
 
-.darkMode .Dropdown-option {
-  background-color:  $primary;
-  color: $darkerTertiary;
- }
-
- .darkMode .btn {
-  color: $lighterQuaternary;
- }
-
- .formError {
+.formError {
   background-color: rgb(245, 200, 200);
   display: block;
   color: rgb(236, 69, 69);
@@ -89,6 +66,5 @@ background-color: $darkerPrimary;
   border-radius: 8px;
   padding: 8px;
   font-size: 12px;
-margin-bottom: 6px;
- }
-
+  margin-bottom: 6px;
+}

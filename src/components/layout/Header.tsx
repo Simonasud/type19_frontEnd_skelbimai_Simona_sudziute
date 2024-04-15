@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useAuthCtx } from '../../store/AuthProvieder';
-import ThemeSwitcher from '../UI/ThemeSwitcher';
-import { useTheme } from '../../store/ThemeProvider';
 
 type NavItemProps = {
   to: string;
@@ -26,10 +24,9 @@ export function NavItem({ to, children, subItem, onClick }: NavItemProps) {
 function Header() {
   const { isUserLoggedIn, logout, email } = useAuthCtx();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { theme } = useTheme();
 
   return (
-    <header className={`header  ${theme === 'dark' ? 'darkMode' : ''}`}>
+    <header className='header'>
       <div className='container headerContainer'>
         <Link to={'/'}>
           <h2 className='headerLogo'>
@@ -39,14 +36,14 @@ function Header() {
         <nav className={`${isMenuOpen ? 'mobileMenu' : 'close'}`}>
           <ul className='headerUl'>
             <li className='headerLi'>
-              <NavItem to='/'>Ads</NavItem>
+              <NavItem to='/ads'>Listings</NavItem>
               <ul className='subMenu'>
-                <li className=''>
+                <li className='headerLiSub'>
                   <NavItem subItem to='/add'>
                     New add
                   </NavItem>
                 </li>
-                <li className=''>
+                <li className='headerLiSub'>
                   <NavItem subItem to='/user/user-ads'>
                     My Ads
                   </NavItem>
@@ -54,25 +51,12 @@ function Header() {
               </ul>
             </li>
 
-            {isUserLoggedIn && (
-              <>
-                <li>
-                  <NavItem onClick={logout} to='/auth/login'>
-                    Logout
-                  </NavItem>
-                </li>
-                <li>
-                  <NavItem to='/user'>My account</NavItem>
-                </li>
-                <li>{email}</li>
-              </>
-            )}
             {!isUserLoggedIn && (
               <>
-                <li>
+                <li className='headerLi'>
                   <NavItem to='/auth/register'>Register</NavItem>
                 </li>
-                <li>
+                <li className='headerLi'>
                   <NavItem to='/auth/login'>Login</NavItem>
                 </li>
               </>
@@ -81,6 +65,21 @@ function Header() {
             <li className='headerLi'>
               <NavItem to='/town'>Town</NavItem>
             </li>
+            {isUserLoggedIn && (
+              <>
+                <li className='headerLi'>
+                  <NavItem onClick={logout} to='/auth/login'>
+                    Logout
+                  </NavItem>
+                </li>
+                <li className='headerLi'>
+                  <NavItem to='/user'>My account</NavItem>
+                </li>
+                <li className='headerLiEmail'>
+                  <span className=''>{email}</span>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
         <div className='burgerMenu'>
@@ -90,7 +89,6 @@ function Header() {
           >
             <i className={`bi bi-${isMenuOpen ? 'x-lg' : 'list'}`}></i>
           </button>
-          <ThemeSwitcher /> {/* Įtraukiame ThemeSwitcher komponentą */}
         </div>
       </div>
     </header>

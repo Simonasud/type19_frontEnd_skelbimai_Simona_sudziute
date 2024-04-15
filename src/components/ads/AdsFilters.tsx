@@ -25,7 +25,7 @@ export function AdsFilters({ onFilterChange }: AdsFilterProps) {
     onFilterChange(finalFilterString);
   }, [townSelVal]);
 
-  const [townsArr, setTownsArr] = useState<{ town: string }[]>([]);
+  const [townsArr, setTownsArr] = useState<{ town_name: string }[]>([]);
   const [categoriesArr, setCategoriesArr] = useState<{ category: string }[]>(
     []
   );
@@ -53,7 +53,7 @@ export function AdsFilters({ onFilterChange }: AdsFilterProps) {
 
   function getCategories() {
     axios
-      .get(`${beBaseurl}/ads/categories`)
+      .get(`${beBaseurl}/ads/filter/categories`)
       .then((resp) => {
         // console.log('resp.data ===', resp.data);
         setCategoriesArr(resp.data);
@@ -112,8 +112,8 @@ export function AdsFilters({ onFilterChange }: AdsFilterProps) {
         >
           <option value={'all'}>Filter by town</option>
           {townsArr.map((tObj) => (
-            <option key={tObj.town} value={tObj.town}>
-              {tObj.town}
+            <option key={tObj.town_name} value={tObj.town_name}>
+              {tObj.town_name}
             </option>
           ))}
         </select>

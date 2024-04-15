@@ -20,11 +20,12 @@
   color: $secondary;
 }
 
-@mixin pageTitleStyle {
-  .title {
-    font-size: 40px;
-  }
+@mixin mainTitle {
+  color: $primary;
+  font-size: 40px;
+}
 
+@mixin pageTitleStyle {
   .text {
     color: $primary;
     font-size: 12px;
@@ -38,18 +39,5 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
       'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     padding-bottom: 20px;
-  }
-
-  .darkMode {
-    .title {
-      color: $darkerTertiary;
-    }
-    .text {
-      color: $tertiary;
-    }
-
-    .additionalText {
-      color: $tertiary;
-    }
   }
 }

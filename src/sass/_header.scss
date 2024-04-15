@@ -3,17 +3,10 @@
   color: $primary;
   padding-top: 15px;
   padding-bottom: 15px;
-
   padding-right: 10px;
-  // position: relative;
   position: sticky;
   top: 0;
   z-index: 1000;
-}
-
-.darkMode .header {
-  background-color: $primary;
-  color: $tertiary;
 }
 
 .headerContainer {
@@ -38,10 +31,6 @@
   margin: 2px;
 }
 
-.darkMode .headerSpan {
-  border: 1px solid $tertiary;
-}
-
 .headerUl {
   display: flex;
   gap: 20px;
@@ -50,6 +39,7 @@
 
 .headerNavLink {
   font-size: 20px;
+  padding-bottom: 10px;
 }
 
 .headerNavLink.smaller {
@@ -68,11 +58,6 @@
   font-size: 24px;
 }
 
-.darkMode .burgerBtn,
-.x-lg {
-  color: $tertiary;
-}
-
 .close {
   display: none;
 }
@@ -88,11 +73,6 @@
   min-width: 200px;
 }
 
-.darkMode .mobileMenu {
-  background-color: rgba(63, 63, 63, 0.9);
-  color: $tertiary;
-}
-
 .burgerMenu {
   display: flex;
   align-items: center;
@@ -103,6 +83,9 @@
   padding-right: 10px;
   padding-top: 10px;
   z-index: 0;
+}
+.headerLiEmail {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -137,7 +120,9 @@
     border-radius: 0 0 10px 10px;
     padding: 15px;
     position: absolute;
-    top: calc(100%);
+    // top: calc(100%);
+    // bottom: 0;
+    top: auto;
     left: 0;
     background-color: rgba(255, 255, 255, 0.5);
     min-width: 80px;
@@ -147,8 +132,9 @@
     transition: transform 0.2s ease-in-out;
     box-sizing: content-box;
   }
-  .darkMode .subMenu {
-    border: 1px solid transparent;
-    background-color: rgba(63, 63, 63, 0.5);
+  .headerLiEmail {
+    display: inline-block;
+    color: $secondary;
+    font-size: 14px;
   }
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { AdsObjType } from '../../types/types';
 import { useAuthCtx } from '../../store/AuthProvieder';
 import cl from 'classnames';
+import { getNiceDate } from '../../utils/helper';
 
 //
 type AddCardProps = {
@@ -22,6 +23,7 @@ export default function AddCard({ item }: AddCardProps) {
       <h2>{item.title}</h2>
       <p>{item.email}</p>
       <p>{item.price}</p>
+      <p className='adsDate'>{getNiceDate(item.created_at || '')}</p>
 
       <Link to={`/ads/${item.id}`}>
         <button className='btn'>

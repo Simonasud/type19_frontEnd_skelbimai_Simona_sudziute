@@ -2,7 +2,6 @@
 
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/layout/Header';
-import AdsPage from './pages/skelbimai/AdsPage.tsx';
 import SingleAddPage from './pages/skelbimai/SingleAddPage.tsx';
 import AddAdsPage from './pages/skelbimai/AddAdsPage.tsx';
 import UserPage from './pages/UserPage.tsx';
@@ -12,6 +11,8 @@ import Register from './components/auth/Register.tsx';
 import { useAuthCtx } from './store/AuthProvieder.tsx';
 import UserAds from './pages/UserAds.tsx';
 import SingleTownPage from './pages/town/SingleTownPage.tsx';
+import HomePage from './pages/HomePage.tsx';
+import AdsPage from './pages/skelbimai/AdsPage.tsx';
 
 function App() {
   const { isUserLoggedIn } = useAuthCtx();
@@ -19,7 +20,8 @@ function App() {
     <div>
       <Header />
       <Routes>
-        <Route path='/' element={<AdsPage />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/ads' element={<AdsPage />} />
         <Route path='/add' element={<AddAdsPage />} />
         <Route path='/ads/:adsId' element={<SingleAddPage />} />
         <Route

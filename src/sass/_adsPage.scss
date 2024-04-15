@@ -3,6 +3,10 @@
   color: $primary;
 }
 
+.title {
+  @include mainTitle;
+}
+
 .adsContainer {
   padding-top: 20px;
   @include pageTitleStyle;

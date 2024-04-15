@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { beBaseurl } from '../../config';
 import { AdsObjType } from '../../types/types';
 import AddCard from '../../components/ads/AddCard';
-import { AdsFilters } from '../../components/ads/AdsFilters';
 
 function AdsPage() {
   const [adsArr, setAdsArr] = useState<
@@ -53,7 +52,6 @@ function AdsPage() {
         {isLoading && <p className='adsAlert'>Loading...</p>}
         {isError && <p className='adsError'>{isError}</p>}
         <div className='container'>
-          <AdsFilters onFilterChange={setFilterVal} />
           <ul className='adsUl'>
             {adsArr?.map((aObj) => (
               <li key={aObj.id}>
